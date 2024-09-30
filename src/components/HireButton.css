@@ -1,0 +1,39 @@
+.hire-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    padding: 0.1rem 0.5rem;
+}
+
+.social-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+}
+
+.social-buttons a {
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 10px;
+    height: 100%;
+    padding: 5px;
+}
+
+.social-buttons a:hover {
+    background-color: white;
+    border-radius: 0.25rem;
+}
+
+.social-buttons a:hover .social-icon {
+    filter: invert(9%) sepia(54%) saturate(7228%) hue-rotate(266deg) brightness(110%) contrast(102%);
+}
+
+.social-icon {
+    height: 100%;
+    filter: invert(1);
+}
