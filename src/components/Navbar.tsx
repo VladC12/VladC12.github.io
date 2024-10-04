@@ -8,7 +8,7 @@ const Navbar: React.FC = () => {
   return (
     <nav>
       <Logo />
-      <a style={{cursor: "wait"}}>Projects: Work In Progres</a>
+      <a style={{cursor: "wait", fontWeight: "bolder"}}>Projects: Work In Progres</a>
       <HireButton />
       <ThemeToggle />
     </nav>
