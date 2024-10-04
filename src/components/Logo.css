@@ -1,0 +1,33 @@
+.logo {
+    display: flex;
+    flex-direction: row;
+    width: 10em;
+    cursor: default;
+}
+
+.unfolding-letter {
+    color: white;
+    display: flex;
+    flex-direction: row;
+    font-weight: bold;
+    overflow: hidden;
+    transition: width 0.2s ease-in-out;
+}
+
+.unfolding-letter span {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.unfolding-letter span:first-child {
+    font-size: 5.5em;
+    margin-top: -0.17em;
+}
+
+.unfolding-letter span:not(:first-child) {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    text-align: center;
+}

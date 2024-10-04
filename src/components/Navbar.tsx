@@ -1,10 +1,12 @@
 import HireButton from "./HireButton";
+import Logo from "./Logo";
+
 import "./Navbar.css";
 
 const Navbar: React.FC = () => {
   return (
     <nav>
-      <a>Crehul Vlad</a>
+      <Logo />
       <a>Projects</a>
       <HireButton />
       <a>Dark/Light</a>
