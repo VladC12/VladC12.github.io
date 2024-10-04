@@ -5,7 +5,7 @@ nav {
     padding: 0.5rem;
     background-color: #5114a1;
     color: white;
-    height: 65px;
+    height: 75px;
     box-sizing: border-box; /* Include padding and border in the element's total height */
     flex-shrink: 0; /* Prevent the nav from shrinking */
 }
