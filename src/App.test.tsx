@@ -1,17 +1,20 @@
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import App from './App';
 
-// To Test
-import App from "./App";
+// Mock the Navbar and CurriculumVitae components
+vi.mock('./components/Navbar', () => ({
+  default: () => <div>Mocked Navbar</div>,
+}));
 
-// Tests
-describe("Renders main page correctly", async () => {
-    it("Should render the page correctly", async () => {
-    // Setup
+vi.mock('./components/CurriculumVitae', () => ({
+  default: () => <div>Mocked CurriculumVitae</div>,
+}));
+
+describe('App Component', () => {
+  it('renders correctly', () => {
     render(<App />);
-    const h1 = await screen.queryByText("Vite + React");
-
-    // Expectations
-    expect(h1).toBeInTheDocument();
-    });
+    expect(screen.getByText('Mocked Navbar')).toBeInTheDocument();
+    expect(screen.getByText('Mocked CurriculumVitae')).toBeInTheDocument();
+  });
 });
