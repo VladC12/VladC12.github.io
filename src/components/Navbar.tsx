@@ -1,5 +1,6 @@
 import HireButton from "./HireButton";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 
 import "./Navbar.css";
 
@@ -9,7 +10,7 @@ const Navbar: React.FC = () => {
       <Logo />
       <a>Projects</a>
       <HireButton />
-      <a>Dark/Light</a>
+      <ThemeToggle />
     </nav>
   );
 };
