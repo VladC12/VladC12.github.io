@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Logo.css";
+import "./Logo.module.css";
 
 const Logo: React.FC = () => {
     const [hoverWidth, setHoverWidth] = useState({width: "3.5em"});

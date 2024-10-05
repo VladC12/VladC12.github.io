@@ -2,7 +2,7 @@ import HireButton from "./HireButton";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 
-import "./Navbar.css";
+import "./Navbar.module.css";
 
 const Navbar: React.FC = () => {
   return (

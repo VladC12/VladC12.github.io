@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import './HireMeAd.css';
+import './HireMeAd.module.css';
 
 const HireMeAd: React.FC = () => {
     const contentList = ["Hire Me", "Let's Work Together", "Contact Me", "I'm Available", "Let's Get In Touch"];

@@ -1,4 +1,4 @@
-import "./CurriculumVitae.css";
+import "./CurriculumVitae.module.css";
 
 const CurriculumVitae: React.FC = () => {
     return (

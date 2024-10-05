@@ -1,4 +1,4 @@
-import './App.css'
+import './App.module.css'
 
 import Navbar from './components/Navbar'
 import CurriculumVitae from './components/CurriculumVitae'

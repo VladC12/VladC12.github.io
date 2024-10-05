@@ -1,4 +1,4 @@
-import './HireButton.css';
+import './HireButton.module.css';
 import HireMeAd from './HireMeAd';
 
 const HireButton: React.FC = () => {

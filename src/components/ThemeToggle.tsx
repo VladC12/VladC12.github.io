@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ThemeToggle.css";
+import "./ThemeToggle.module.css";
 
 const ThemeToggle: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
