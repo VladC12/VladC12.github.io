@@ -6,7 +6,7 @@ import styles from "./Navbar.module.css";
 
 const Navbar: React.FC = () => {
   return (
-    <div className = {styles.container}>
+    <div className={styles.container}>
       <nav>
         <Logo />
         <a style={{ cursor: "wait", fontWeight: "bolder" }}>Projects: Work In Progres</a>

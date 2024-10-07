@@ -11,9 +11,9 @@ const ThemeToggle: React.FC = () => {
   return (
     <div className={styles.toggle} onClick={toggleTheme}>
       {isDarkMode ? (
-        <img src="/moon.svg" alt="Dark mode" className="icon"/>
+        <img src="/moon.svg" alt="Dark mode" className={styles.icon}/>
       ) : (
-        <img src="/sun.svg" alt="Light mode" className="icon"/>
+        <img src="/sun.svg" alt="Light mode" className={styles.icon}/>
       )}
     </div>
   );

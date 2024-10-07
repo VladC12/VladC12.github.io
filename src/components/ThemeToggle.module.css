@@ -1,7 +1,6 @@
 .toggle {
     display: flex;
     justify-content: center;
-    align-self: center;
     cursor: pointer;
     width: 3em;
     height: 3em;
@@ -17,6 +16,7 @@
 }
 
 .toggle img {
+    margin-top: 20%;
     filter: invert(1);
     height: 60%;
 }

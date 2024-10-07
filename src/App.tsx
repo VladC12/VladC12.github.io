@@ -5,10 +5,10 @@ import CurriculumVitae from './components/CurriculumVitae'
 
 function App() {
   return (
-    <div>
+    <>
       <Navbar/>
       <CurriculumVitae/>
-    </div>
+    </>
   )
 }
 
