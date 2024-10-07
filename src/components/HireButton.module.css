@@ -1,4 +1,4 @@
-.hire-button-container {
+.container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -8,7 +8,7 @@
     padding: 0.1rem 0.5rem;
 }
 
-.social-buttons {
+.buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -16,7 +16,7 @@
     max-width: 100%;
 }
 
-.social-buttons a {
+.buttons a {
     cursor: pointer;
     box-sizing: border-box;
     margin: 10px;
@@ -26,16 +26,16 @@
     transition: background-color 0.1s ease;
 }
 
-.social-buttons a:hover {
+.buttons a:hover {
     background-color: white;
 }
 
-.social-buttons a:hover .social-icon {
+.buttons a:hover .icon {
     filter: invert(9%) sepia(54%) saturate(7228%) hue-rotate(266deg) brightness(110%) contrast(102%);
     animation: wiggle 0.5s forwards;
 }
 
-.social-icon {
+.icon {
     height: 100%;
     filter: invert(1);
 }

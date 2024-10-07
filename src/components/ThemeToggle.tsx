@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./ThemeToggle.module.css";
+import styles from "./ThemeToggle.module.css";
 
 const ThemeToggle: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -9,7 +9,7 @@ const ThemeToggle: React.FC = () => {
   };
 
   return (
-    <div className="toggle-theme" onClick={toggleTheme}>
+    <div className={styles.toggle} onClick={toggleTheme}>
       {isDarkMode ? (
         <img src="/moon.svg" alt="Dark mode" className="icon"/>
       ) : (

@@ -1,4 +1,4 @@
-.toggle-theme {
+.toggle {
     display: flex;
     justify-content: center;
     align-self: center;
@@ -9,23 +9,23 @@
     border-radius: 1rem;
 }
 
-.toggle-theme:active::after {
+.toggle:active::after {
     padding: 0;
     margin: 0;
     opacity: 1;
     transition: 0s
 }
 
-.toggle-theme img {
+.toggle img {
     filter: invert(1);
     height: 60%;
 }
 
-.toggle-theme:hover {
+.toggle:hover {
     background-color: white;
 }
 
-.toggle-theme:hover .icon {
+.toggle:hover .icon {
     filter: invert(9%) sepia(54%) saturate(7228%) hue-rotate(266deg) brightness(110%) contrast(102%);
     animation: wiggle 0.5s forwards;
 }

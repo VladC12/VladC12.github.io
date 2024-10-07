@@ -1,4 +1,4 @@
-.hire-me-ad {
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,18 +9,18 @@
     white-space: nowrap;
 }
 
-.hire-me-ad span {
+.container span {
     color: white;
     font-size: 1.2rem;
     font-weight: bold;
 
 }
 
-.fade-in {
+.fadeIn {
     animation: fadeInGlitch 0.5s forwards;
 }
 
-.fade-out {
+.fadeOut {
     animation: fadeOutGlitch 0.5s forwards;
 }
 

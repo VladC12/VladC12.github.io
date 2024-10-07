@@ -1,16 +1,16 @@
-.cv-container {
+.container {
     display: flex;
     flex-direction: row;
     flex: 1;
 }
 
-.cv-container > div:first-child {
+.container > div:first-child {
     flex: 0 0 60%;
     padding: 0 0.5rem 0 0.5rem;
     overflow-y: auto;
 }
 
-.cv-container > div:last-child {
+.container > div:last-child {
     flex: 1;
     background-color: aliceblue;
 }
