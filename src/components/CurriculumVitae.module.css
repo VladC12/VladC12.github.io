@@ -12,9 +12,10 @@
 
 .container div:last-child {
     flex: 1;
+    height: calc(100vh - 75px);
     background-color: aliceblue;
-}
-
-.portrait {
-
+    position: -webkit-sticky;
+    position: sticky;
+    top: 75px;
+    overflow: hidden;
 }
