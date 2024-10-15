@@ -1,6 +1,8 @@
 import { render, screen, act } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
+
 import HireMeAd from './HireMeAd';
+import styles from './HireMeAd.module.css';
 
 describe('HireMeAd Component', () => {
     it('renders correctly', () => {
@@ -38,17 +40,17 @@ describe('HireMeAd Component', () => {
         render(<HireMeAd />);
 
         const textElement = screen.getByText('Hire Me');
-        expect(textElement).toHaveClass('fade-in');
+        expect(textElement).toHaveClass(styles.fadeIn);
 
         act(() => {
             vi.advanceTimersByTime(5000);
         });
-        expect(textElement).toHaveClass('fade-out');
+        expect(textElement).toHaveClass(styles.fadeOut);
 
         act(() => {
             vi.advanceTimersByTime(500);
         });
-        expect(textElement).toHaveClass('fade-in');
+        expect(textElement).toHaveClass(styles.fadeIn);
 
         vi.useRealTimers();
     });

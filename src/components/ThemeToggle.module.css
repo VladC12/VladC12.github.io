@@ -1,0 +1,85 @@
+.toggle {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    width: 3em;
+    height: 3em;
+    transition: background-color 0.1s ease;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.toggle:active::after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+.toggle img {
+    margin-top: 20%;
+    filter: invert(1);
+    height: 60%;
+}
+
+.toggle:hover {
+    background-color: var(--anti-accent-color);
+}
+
+.toggle:hover .icon {
+    filter: var(--svg-accent-filter);
+}
+
+.toggle:hover .icon:not(.comeIn):not(.comeOut) {
+    animation: wiggle 0.5s forwards;
+  }
+
+.icon.comeIn {
+    animation: comeInAnimation 0.5s forwards;
+}
+
+.icon.comeOut {
+    animation: comeOutAnimation 0.5s forwards;
+}
+
+@keyframes comeInAnimation {
+    0% {
+        opacity: 0;
+        transform: translate(-100%, 25%) rotate(-25deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+@keyframes comeOutAnimation {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(100%, 25%) rotate(25deg);
+    }
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(3deg);
+    }
+
+    50% {
+        transform: rotate(-3deg);
+    }
+
+    75% {
+        transform: rotate(3deg);
+    }
+}

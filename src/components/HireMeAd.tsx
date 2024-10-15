@@ -1,18 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
-import './HireMeAd.css';
+import styles from './HireMeAd.module.css';
 
 const HireMeAd: React.FC = () => {
     const contentList = ["Hire Me", "Let's Work Together", "Contact Me", "I'm Available", "Let's Get In Touch"];
 
     const [textContent, setTextContent] = useState(contentList[0]);
     const [maxWidth, setMaxWidth] = useState(0);
-    const [animationClass, setAnimationClass] = useState('fade-in');
+    const [animationClass, setAnimationClass] = useState(styles.fadeIn);
     const spanRef = useRef<HTMLSpanElement>(null);
 
     useEffect(() => {
         // Change the text content every 5 seconds
         const interval = setInterval(() => {
-            setAnimationClass('fade-out');
+            setAnimationClass(styles.fadeOut);
             // Wait for the fade-out animation to complete before changing the text content
             setTimeout(() => {
                 setTextContent(prev => {
@@ -21,7 +21,7 @@ const HireMeAd: React.FC = () => {
                     return contentList[nextIndex];
                 });
                 // Reset the animation class to trigger the fade-in animation
-                setAnimationClass('fade-in');
+                setAnimationClass(styles.fadeIn);
             }, 500); // Match the duration of the fade-in/fade-out animation
         }, 5000);
 
@@ -41,7 +41,7 @@ const HireMeAd: React.FC = () => {
     }, [contentList]);
 
     return (
-        <div className="hire-me-ad" style={{ width: maxWidth }}>
+        <div className={styles.container} style={{ width: maxWidth }}>
             <span className={animationClass}>{textContent}</span>
             <span ref={spanRef} style={{ visibility: 'hidden', position: 'absolute', whiteSpace: 'nowrap' }}></span>
         </div>

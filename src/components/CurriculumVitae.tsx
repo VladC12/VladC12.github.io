@@ -1,10 +1,12 @@
-import "./CurriculumVitae.css";
+import styles from "./CurriculumVitae.module.css";
 
 const CurriculumVitae: React.FC = () => {
     return (
-        <div className="cv-container">
+        <div className={styles.container}>
             <div>
-                <h1>Crehul Vlad</h1>
+                <div>
+                    <h1>Crehul Vlad</h1>
+                </div>
                 <p>I am a software engineer with a passion for all things technology: software, hardware, electronics, and
                     artificial intelligence. Now with a focus on web development.</p>
                 <h2>Experience</h2>
