@@ -9,7 +9,7 @@
 .dark{
     --accent-color: #241F31;
     --anti-accent-color: #ffffff;
-    --svg-accent-filter: invert(4%) sepia(33%) saturate(7452%) hue-rotate(248deg) brightness(94%) contrast(105%);
+    --svg-accent-filter: invert(9%) sepia(35%) saturate(757%) hue-rotate(215deg) brightness(96%) contrast(90%);
     --text-color: #ffffff;
     --background-color: #2B2B2B;
 }
