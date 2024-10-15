@@ -1,14 +1,20 @@
-import './App.module.css'
+import styles from './App.module.css'
 
 import Navbar from './components/Navbar'
 import CurriculumVitae from './components/CurriculumVitae'
 
-function App() {
+import { ThemeContext } from './context/ThemeContext'
+import { useContext } from 'react';
+
+const App = () => {
+
+  const { isDarkMode } = useContext(ThemeContext);
+
   return (
-    <>
-      <Navbar/>
-      <CurriculumVitae/>
-    </>
+    <div className={styles[isDarkMode ? "dark" : "default"]}>
+      <Navbar />
+      <CurriculumVitae />
+    </div>
   )
 }
 

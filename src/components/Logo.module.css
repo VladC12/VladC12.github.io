@@ -7,7 +7,7 @@
 }
 
 .unfoldingLetter {
-    color: white;
+    color: var(--anti-accent-color);
     display: flex;
     flex-direction: row;
     font-weight: bold;

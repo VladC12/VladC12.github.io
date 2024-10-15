@@ -8,12 +8,15 @@
     flex: 0 0 60%;
     padding: 0 0.5rem 0 0.5rem;
     overflow-y: auto;
+    color: var(--text-color);
+    background-color: var(--background-color);
 }
 
 .container div:last-child {
     flex: 1;
     height: calc(100vh - 75px);
-    background-color: aliceblue;
+    color: var(--text-color);
+    background-color: var(--background-color);
     position: -webkit-sticky;
     position: sticky;
     top: 75px;

@@ -10,7 +10,7 @@
 }
 
 .container span {
-    color: white;
+    color: var(--anti-accent-color);
     font-size: 1.2rem;
     font-weight: bold;
 

@@ -22,10 +22,10 @@
 }
 
 .toggle:hover {
-    background-color: white;
+    background-color: var(--anti-accent-color);
 }
 
 .toggle:hover .icon {
-    filter: invert(9%) sepia(54%) saturate(7228%) hue-rotate(266deg) brightness(110%) contrast(102%);
+    filter: var(--svg-accent-filter);
     animation: wiggle 0.5s forwards;
 }
