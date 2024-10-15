@@ -10,6 +10,7 @@
     overflow-y: auto;
     color: var(--text-color);
     background-color: var(--background-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .container div:last-child {
@@ -21,4 +22,5 @@
     position: sticky;
     top: 75px;
     overflow: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
