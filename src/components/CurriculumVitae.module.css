@@ -74,7 +74,7 @@
 }
 
 .projects li:hover{
-    background-color: var(--highlight-color);
+    background-color: var(--accent-color);
     color: var(--anti-accent-color);
     transform: translate(-1px, -1px);
     box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
@@ -86,6 +86,7 @@
 
 .projects a {
     color: var(--highlight-color);
+    transition: color 0.5s ease, color 0.5s ease;
 }
 
 .projects div {
