@@ -4,7 +4,7 @@
     flex: 1;
 }
 
-.container div:first-child {
+.cv {
     flex: 0 0 60%;
     padding: 0 2rem 0 5rem;
     overflow-y: auto;
@@ -13,31 +13,41 @@
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-.container div:first-child .myself {
+.cv h2 {
+    margin: 0.5em 0 0 0;
+    padding: 0;
+}
+
+.cv h3 {
+    margin: 0.2em;
+    padding: 0;
+}
+
+.cv .myself {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-top: 2rem;
 }
 
-.container div:first-child .myself span {
+.cv .myself span {
     font-weight: bold;
     font-size: 2.8em;
     padding: 1rem;
     text-align: center;
 }
 
-.container div:first-child .myself p {
+.cv .myself p {
     font-size: 1.3em;
     padding: 1rem;
 }
 
-.container div:first-child .myself b {
+.cv .myself b {
     font-size: 1.1em;
 }
 
 
-.container div:last-child {
+.showcase {
     flex: 1;
     height: calc(100vh - 75px);
     color: var(--text-color);
@@ -64,7 +74,6 @@
     z-index: 1;
     display: flex;
     flex-wrap: wrap;
-    max-height: 4em;
     margin: 5px;
 }
 
