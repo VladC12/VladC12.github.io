@@ -86,7 +86,7 @@
 
 .projects a {
     color: var(--highlight-color);
-    transition: color 0.5s ease, color 0.5s ease;
+    transition: color 0.2s ease, color 0.5s ease;
 }
 
 .projects div {
