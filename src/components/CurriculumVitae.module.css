@@ -61,6 +61,7 @@
 }
 
 .projects div {
+    z-index: 1;
     display: flex;
     flex-wrap: wrap;
     max-height: 4em;
