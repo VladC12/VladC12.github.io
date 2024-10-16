@@ -4,27 +4,30 @@ const CurriculumVitae: React.FC = () => {
     return (
         <div className={styles.container}>
             <div>
-                <div>
-                    <h1>Crehul Vlad</h1>
+                <div className={styles.myself}>
+                    <span>Crehul Vlad</span>
+                    <p>I am a <b>software engineer</b> with a passion for all things technology: software, hardware, electronics, and
+                        artificial intelligence. My main professional focus is <b>web development</b>. Especially in <b>React</b> and <b>NextJS</b>.</p>
                 </div>
-                <p>I am a software engineer with a passion for all things technology: software, hardware, electronics, and
-                    artificial intelligence. Now with a focus on web development.</p>
                 <h2>Experience</h2>
                 <ul>
                     <li>
-                        <h3>09/2021 - ##/2024</h3>
+                        <h3>09/2021 - 12/2024</h3>
                         <h3>SOFTWARE ENGINEER, SC Artificial Intelligence Visual Analytics SRL</h3>
                         <p>
-                            Worked mostly alone on multiple projects, some for internal use only and some to be used by
+                            My first job, and it was a start-up. Worked on multiple projects, some for internal use only and some to be used by
                             clients. Most of the work was focused on web development using React and NodeJS. Another
                             part of the work there was in Synthetic Data Generation with Blender and Python and 3D
                             modeling.
                         </p>
                         <h2>Projects</h2>
-                        <ul>
+                        <ul className={styles.projects}>
                             <li>
                                 <h3>Cradle</h3>
                                 <p>Written in python, this application ingests RTSP streams from one or more sources, performing real-time inference on the video frames using a machine learning model. The inference results are then packaged into analytical payloads, which can include people detection data and other insights. This tool is designed for use in surveillance systems, traffic monitoring setups, and other scenarios where real-time video analysis can provide valuable insights.</p>
+                                <div>
+                                    <span>Python</span><span>OpenCV</span><span>Multiprocessing</span><span>Tensorflow</span>
+                                </div>
                             </li>
                             <li>
                                 <h3>Quartermaster</h3>
@@ -37,6 +40,9 @@ const CurriculumVitae: React.FC = () => {
                                     Upon selecting a folder or file(s), users could request to download them in an archive while
                                     maintaining the file structure. Options to download immediately or use a time-limited link were
                                     also available.</p>
+                                <div>
+                                    <span>NextJS</span><span>React</span><span>Typescript</span><span>threejs</span>
+                                </div>
                             </li>
                             <li>
                                 <h3>Caster</h3>
@@ -44,6 +50,9 @@ const CurriculumVitae: React.FC = () => {
                                     in organizing stored dataset materials by allowing mass uploads of files in a specific directory
                                     structure while handling upload chunking. It also catered to special cases such as organizing 3D
                                     model files that had texture files in folders.</p>
+                                <div>
+                                    <span>NextJS</span><span>React</span><span>Typescript</span>
+                                </div>
                             </li>
                             <li>
                                 <h3>Event Manager</h3>
@@ -51,6 +60,9 @@ const CurriculumVitae: React.FC = () => {
                                     events that can happen at a checkout counter such as item scanning fraud.
                                     It shows a detailed table that can be filtered based on multiple factors.
                                     You can create users which have different limitations.</p>
+                                <div>
+                                    <span>NextJS</span><span>React</span><span>Typescript</span><span>MongoDB</span>
+                                </div>
                             </li>
                             <li>
                                 <h3>Event Watcher</h3>
@@ -60,6 +72,9 @@ const CurriculumVitae: React.FC = () => {
                                     there is Event Watcher Buddy which allows to manage the users. The user system is similar to
                                     Event Manager.
                                     Buddy is also used to keep track of the app version and enable users to download updates.</p>
+                                <div>
+                                    <span>Electron</span><span>React</span><span>Typescript</span><span>MongoDB</span>
+                                </div>
                             </li>
                         </ul>
                     </li>
@@ -71,12 +86,15 @@ const CurriculumVitae: React.FC = () => {
                             electronics in a team of four people, for prototype devices.
                         </p>
                         <h2>Projects</h2>
-                        <ul>
+                        <ul className={styles.projects}>
                             <li>
                                 <h3>Internship Project</h3>
                                 <p>The main project done during the internship was writing software for an electric ATV which used
                                     custom drivers created by them. The 4 drivers were controlled through and Arduino communicating to them via CAN.</p>
-                                <a>https://github.com/VladC12/CONTIMOBIL-2018</a>
+                                <a href="https://github.com/VladC12/CONTIMOBIL-2018" target="_blank" rel="noopener noreferrer">https://github.com/VladC12/CONTIMOBIL-2018</a>
+                                <div>
+                                    <span>Arduino</span><span>C</span>
+                                </div>
                             </li>
                         </ul>
                     </li>
@@ -94,13 +112,16 @@ const CurriculumVitae: React.FC = () => {
                         <h3>Bachelor of Engineeering, UTCN, Faculty of Electronics, Telecommunications and Technology Information</h3>
                         <p>Telecommunication Technologies and System specialization.</p>
                         <h2>Projects</h2>
-                        <ul>
+                        <ul className={styles.projects}>
                             <li>
                                 <h3>Bachelor Thesis: Tacotron 2 DNN Text-To-Speech Web App</h3>
                                 <p>My bachelor thesis project involved implementing a version of Tacotron 2 and training two
                                     models: one in Romanian using the Mara Corpus, which contains the audiobook "Mara", and
                                     another in English using the publicly available LJSpeech Dataset. Additionally, a web interface was
                                     developed using Flask to accompany the two models.</p>
+                                <div>
+                                    <span>Python</span><span>Tensorflow</span><span>Flask</span><span>Bootstrap</span>
+                                </div>
                             </li>
                             <li>
                                 <h3>IOT Modbus Monitor</h3>
@@ -108,14 +129,20 @@ const CurriculumVitae: React.FC = () => {
                                     Modbus and displaying it in a web interface. We accomplished this using Python and rendering
                                     the web interface via Flask, a Python library. The data was organized and stored in a database
                                     using pymongo.</p>
-                                <a>https://github.com/VladC12/IOT_Modbus_Monitor</a>
+                                <a href="https://github.com/VladC12/IOT_Modbus_Monitor" target="_blank" rel="noopener noreferrer">https://github.com/VladC12/IOT_Modbus_Monitor</a>
+                                <div>
+                                    <span>Python</span><span>Flask</span><span>Bootstrap</span><span>MongoDB</span>
+                                </div>
                             </li>
                             <li>
                                 <h3>Edge Detection with GUI</h3>
                                 <p>A project for year 4 semester 1 of the university for Digital Image Processing. We used Prewitt,
                                     Sobel, compass, Nevatia-Babu operators for edge detection with automated mask generation of
                                     any size. The GUI was made in the Python library Tkinter.</p>
-                                <a>https://github.com/VladC12/Edge-Detection-PNI</a>
+                                <a href="https://github.com/VladC12/Edge-Detection-PNI" target="_blank" rel="noopener noreferrer">https://github.com/VladC12/Edge-Detection-PNI</a>
+                                <div>
+                                    <span>Python</span><span>OpenCV</span><span>Tkinter</span>
+                                </div>
                             </li>
                         </ul>
                     </li>

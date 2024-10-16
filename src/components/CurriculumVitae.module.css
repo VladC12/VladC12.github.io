@@ -6,12 +6,36 @@
 
 .container div:first-child {
     flex: 0 0 60%;
-    padding: 0 0.5rem 0 0.5rem;
+    padding: 0 2rem 0 5rem;
     overflow-y: auto;
     color: var(--text-color);
     background-color: var(--background-color);
     transition: background-color 0.5s ease, color 0.5s ease;
 }
+
+.container div:first-child .myself {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.container div:first-child .myself span {
+    font-weight: bold;
+    font-size: 2.8em;
+    padding: 1rem;
+    text-align: center;
+}
+
+.container div:first-child .myself p {
+    font-size: 1.3em;
+    padding: 1rem;
+}
+
+.container div:first-child .myself b {
+    font-size: 1.1em;
+}
+
 
 .container div:last-child {
     flex: 1;
@@ -23,4 +47,39 @@
     top: 75px;
     overflow: hidden;
     transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.projects {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.projects li {
+    padding: 1rem;
+    width: 40%;
+}
+
+.projects div {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 4em;
+    margin: 5px;
+}
+
+.projects span {
+    max-height: 1em;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    color: var(--accent-color);
+    background: var(--highlight-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 5px 8px 5px 8px;
+    font-weight: bold;
+    margin: 0 0.5rem 0 0;
+}
+
+.projects a {
+    color: var(--highlight-color);
+    cursor: pointer;
 }
