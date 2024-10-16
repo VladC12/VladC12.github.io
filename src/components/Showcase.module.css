@@ -1,0 +1,39 @@
+.container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comeIn {
+    animation: comeInAnimation 0.5s forwards;
+}
+
+.comeOut{
+    animation: comeOutAnimation 0.5s forwards;
+
+}
+
+@keyframes comeInAnimation {
+    0% {
+        opacity: 0;
+        transform: translate(100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes comeOutAnimation {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(100%, 0);
+    }
+}
