@@ -15,7 +15,7 @@ const CurriculumVitae: React.FC = () => {
                         <h3>09/2021 - 12/2024</h3>
                         <h3>SOFTWARE ENGINEER, SC Artificial Intelligence Visual Analytics SRL</h3>
                         <p>
-                            My first job, and it was a start-up. Worked on multiple projects, some for internal use only and some to be used by
+                            My first job, and it was a start-up. Worked on multiple projects as a full-stack developer, some for internal use only and some to be used by
                             clients. Most of the work was focused on web development using React and NodeJS. Another
                             part of the work there was in Synthetic Data Generation with Blender and Python and 3D
                             modeling.
@@ -46,12 +46,17 @@ const CurriculumVitae: React.FC = () => {
                             </li>
                             <li>
                                 <h3>Caster</h3>
-                                <p>One of the internal tools developed for AiVA was created using NextJS. Its purpose was to assist
-                                    in organizing stored dataset materials by allowing mass uploads of files in a specific directory
-                                    structure while handling upload chunking. It also catered to special cases such as organizing 3D
-                                    model files that had texture files in folders.</p>
+                                <p>Another internal tool developed for AiVA also created in NextJS and Flask. The web applications
+                                    was meant to simplify the process of visually saving image coordinates. The main page of the web
+                                    application allowed users to save RTSP Video Streams with a thumbnail based on a screen-shot
+                                    from the stream.
+                                    For each stream one could create lines for direction and passage and polygons for regions of
+                                    interest (ROI), using Canvas. These lines and polygons were used by AI to detect when people
+                                    pass the lines or are present in the ROI. Some additional options were also available, although
+                                    less important.
+                                    Flask was used to handle the RTSP streams and APIs related to OpenCV.</p>
                                 <div>
-                                    <span>NextJS</span><span>React</span><span>Typescript</span>
+                                    <span>NextJS</span><span>React</span><span>Typescript</span><span>Flask</span>
                                 </div>
                             </li>
                             <li>
@@ -71,9 +76,10 @@ const CurriculumVitae: React.FC = () => {
                                     second video of the event, along with the SKU barcode, price, and timestamp. Associated with it
                                     there is Event Watcher Buddy which allows to manage the users. The user system is similar to
                                     Event Manager.
-                                    Buddy is also used to keep track of the app version and enable users to download updates.</p>
+                                    Buddy is also used to keep track of the app version and enable users to download updates, allows for
+                                    user creation and handles the API.</p>
                                 <div>
-                                    <span>Electron</span><span>React</span><span>Typescript</span><span>MongoDB</span>
+                                    <span>Electron</span><span>React</span><span>Typescript</span><span>MongoDB</span><span>NodeJS</span>
                                 </div>
                             </li>
                         </ul>
@@ -96,13 +102,16 @@ const CurriculumVitae: React.FC = () => {
                                     <span>Arduino</span><span>C</span>
                                 </div>
                             </li>
+                            <li>
+                                <h3>Innovation Labs 2018</h3>
+                                <p>Part of the Calics team I helped write the code for an electric self-stabilizing cup-holder. This
+                                    project continued partially at the Continental Internship. We reached the semi-finals at Bucharest.</p>
+                                <a href="https://github.com/VladC12/Omni-Holder" target="_blank" rel="noopener noreferrer">https://github.com/VladC12/Omni-Holder</a>
+                                <div>
+                                    <span>Arduino</span><span>C</span><span>Electronics</span>
+                                </div>
+                            </li>
                         </ul>
-                    </li>
-                    <li>
-                        <h3>06/2016 - 08/2016</h3>
-                        <h3>Computer Equipment Operator, Genius SRL</h3>
-                        <p>Assembled and diagnosed personal computers for customers. Also assisted at selling computer
-                            hardware and software and helped customers purchase electronic devices and other software.</p>
                     </li>
                 </ul>
                 <h2>Education</h2>

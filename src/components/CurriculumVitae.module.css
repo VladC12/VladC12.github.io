@@ -63,11 +63,29 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    list-style-type: none;
 }
 
 .projects li {
     padding: 1rem;
     width: 40%;
+    border-radius: 3px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.projects li:hover{
+    background-color: var(--highlight-color);
+    color: var(--anti-accent-color);
+    transform: translate(-1px, -1px);
+    box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+}
+
+.projects li:hover a {
+    color: var(--anti-accent-color);
+}
+
+.projects a {
+    color: var(--highlight-color);
 }
 
 .projects div {
@@ -78,7 +96,6 @@
 }
 
 .projects span {
-    max-height: 1em;
     transition: background-color 0.5s ease, color 0.5s ease;
     color: var(--accent-color);
     background: var(--highlight-color);
@@ -86,10 +103,5 @@
     border-radius: 10px;
     padding: 5px 8px 5px 8px;
     font-weight: bold;
-    margin: 0 0.5rem 0 0;
-}
-
-.projects a {
-    color: var(--highlight-color);
-    cursor: pointer;
+    margin: 0.5rem 0.5rem 0 0;
 }
