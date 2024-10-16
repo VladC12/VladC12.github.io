@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
     <div className={styles.container}>
       <nav>
         <Logo />
-        <a style={{ cursor: "wait", fontWeight: "bolder" }}>Projects: Work In Progres</a>
+        <a style={{ cursor: "wait", fontWeight: "bolder" }}>Portfolio: Coming Soon ...</a>
         <HireButton />
         <ThemeToggle />
       </nav>
