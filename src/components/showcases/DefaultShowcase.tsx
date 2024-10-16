@@ -42,12 +42,12 @@ const DefaultShowcase: React.FC = () => {
             <span style={
                 {
                     textShadow: `${Math.max(1, skew.x) + float.x / 10}px ${skew.y + float.y / 10}px 0 #ff0000,
-                                 ${Math.max(2, skew.x * 2) + float.x / 10}px ${skew.y * 2 + float.y / 9}px 0 #00ff00, 
-                                 ${Math.max(3, skew.x * 3) + float.x / 10}px ${skew.y * 3 + float.y / 8}px 0 #0000ff, 
-                                 ${Math.max(4, skew.x * 4) + float.x / 10}px ${skew.y * 4 + float.y / 7}px 0 #ffff00`,
+                                 ${Math.max(2, skew.x * 1.5) + float.x / 10}px ${skew.y * 1.5 + float.y / 9}px 0 #00ff00, 
+                                 ${Math.max(3, skew.x * 2) + float.x / 10}px ${skew.y * 2 + float.y / 8}px 0 #0000ff, 
+                                 ${Math.max(4, skew.x * 2.5) + float.x / 10}px ${skew.y * 2.5 + float.y / 7}px 0 #ffff00`,
                     transform: `skew(${skew.x}deg, ${skew.y}deg) translate(${float.x}px, ${float.y}px)`
                 }}>
-                Hover over a project to see more details.
+                Welcome! <br />Hover over a project to see more details.
             </span>
         </div>
     )

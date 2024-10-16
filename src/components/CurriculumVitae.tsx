@@ -35,14 +35,14 @@ const CurriculumVitae: React.FC = () => {
                         </p>
                         <h2>Projects</h2>
                         <ul className={styles.projects}>
-                            <li id="cradle" onMouseEnter={handleHover}>
+                            <li id="cradle" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
                                 <h3>Cradle</h3>
                                 <p>Written in python, this application ingests RTSP streams from one or more sources, performing real-time inference on the video frames using a machine learning model. The inference results are then packaged into analytical payloads, which can include people detection data and other insights. This tool is designed for use in surveillance systems, traffic monitoring setups, and other scenarios where real-time video analysis can provide valuable insights.</p>
                                 <div>
                                     <span>Python</span><span>OpenCV</span><span>Multiprocessing</span><span>Tensorflow</span>
                                 </div>
                             </li>
-                            <li id="quartermaster" onMouseEnter={handleHover}>
+                            <li id="quartermaster" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
                                 <h3>Quartermaster</h3>
                                 <p>One of the internal tools developed for AiVA was created using NextJS. Its purpose was to assist
                                     in organizing stored dataset materials by allowing mass uploads of files in a specific directory
@@ -57,7 +57,7 @@ const CurriculumVitae: React.FC = () => {
                                     <span>NextJS</span><span>React</span><span>Typescript</span><span>threejs</span>
                                 </div>
                             </li>
-                            <li id="caster" onMouseEnter={handleHover}>
+                            <li id="caster" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
                                 <h3>Caster</h3>
                                 <p>Another internal tool developed for AiVA also created in NextJS and Flask. The web applications
                                     was meant to simplify the process of visually saving image coordinates. The main page of the web
@@ -72,7 +72,7 @@ const CurriculumVitae: React.FC = () => {
                                     <span>NextJS</span><span>React</span><span>Typescript</span><span>Flask</span>
                                 </div>
                             </li>
-                            <li id="event-manager" onMouseEnter={handleHover}>
+                            <li id="event-manager" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
                                 <h3>Event Manager</h3>
                                 <p>One of the projects meant for client-use. It is created in NextJS. It is meant to visualize different
                                     events that can happen at a checkout counter such as item scanning fraud.
@@ -82,7 +82,7 @@ const CurriculumVitae: React.FC = () => {
                                     <span>NextJS</span><span>React</span><span>Typescript</span><span>MongoDB</span>
                                 </div>
                             </li>
-                            <li id="event-watcher" onMouseEnter={handleHover}>
+                            <li id="event-watcher" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
                                 <h3>Event Watcher</h3>
                                 <p>Another project for client-use. It was made with Electron and React. It’s a desktop app that allows
                                     the user to be notified in real-time of item fraud at the checkout counter. Users can view a ~5
@@ -106,7 +106,7 @@ const CurriculumVitae: React.FC = () => {
                         </p>
                         <h2>Projects</h2>
                         <ul className={styles.projects}>
-                            <li id="continental" onMouseEnter={handleHover}>
+                            <li id="continental" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
                                 <h3>Internship Project</h3>
                                 <p>The main project done during the internship was writing software for an electric ATV which used
                                     custom drivers created by them. The 4 drivers were controlled through and Arduino communicating to them via CAN.</p>
@@ -115,7 +115,7 @@ const CurriculumVitae: React.FC = () => {
                                     <span>Arduino</span><span>C</span>
                                 </div>
                             </li>
-                            <li id="innovation-labs" onMouseEnter={handleHover}>
+                            <li id="innovation-labs" onMouseEnter={handleHover} >
                                 <h3>Innovation Labs 2018</h3>
                                 <p>Part of the Calics team I helped write the code for an electric self-stabilizing cup-holder. This
                                     project continued partially at the Continental Internship. We reached the semi-finals at Bucharest.</p>
@@ -179,7 +179,7 @@ const CurriculumVitae: React.FC = () => {
                 </div>
             </div>
             <div className={styles.showcase}>
-                <Showcase showcase={showcase}/>                
+                <Showcase showcase={showcase} />
             </div>
         </div>
     );
