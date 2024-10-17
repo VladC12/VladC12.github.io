@@ -1,7 +1,8 @@
+import { ThemeContext } from "../context/ThemeContext";
 import styles from "./CurriculumVitae.module.css";
 import Showcase from "./Showcase";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 const CurriculumVitae: React.FC = () => {
 
@@ -13,6 +14,8 @@ const CurriculumVitae: React.FC = () => {
             setShowcase(ilElement.id);
         }
     }
+
+    const { isMobile } = useContext(ThemeContext);
 
     return (
         <div className={styles.container}>
@@ -178,9 +181,11 @@ const CurriculumVitae: React.FC = () => {
                     Download CV and Source Code for website
                 </div>
             </div>
+            {!isMobile && 
             <div className={styles.showcase}>
                 <Showcase showcase={showcase} />
-            </div>
+            </div>}
+
         </div>
     );
 };
