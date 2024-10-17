@@ -15,10 +15,15 @@ const Navbar: React.FC = () => {
   return (
     <div className={styles.container}>
       {isMobile ?
-        <nav>
-          <ThemeToggle />
-          <HamburgerToggle isActive={isActive} setIsActive={setIsActive} />
-        </nav>
+        <>
+          <nav>
+            <ThemeToggle />
+            <HamburgerToggle isActive={isActive} setIsActive={setIsActive} />
+          </nav>
+          <div className={`${styles.hamMenu} ${!isActive && styles.active}`}>
+            <HireButton />
+          </div>
+        </>
         :
         <nav>
           <Logo />
