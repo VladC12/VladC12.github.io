@@ -1,5 +1,5 @@
 import styles from "./Showcase.module.css";
-import Cradle from "./showcases/Cradle";
+import ContentShowcase from "./showcases/ContentShowcase";
 import TextShowcase from "./showcases/TextShowcase";
 
 import { useEffect, useState } from "react";
@@ -18,22 +18,37 @@ const Showcase: React.FC<Props> = ({ showcase }) => {
             Welcome! <br />Hover over a project to see more details.
         </TextShowcase>)
 
+    const ProjectShowcase = (showcase: string, children: any) => {
+        setPreviousShowcase(showcase);
+        return (
+            <ContentShowcase>
+                {children}
+            </ContentShowcase>
+        )
+    }
+
     const displayShowcase = () => {
         switch (showcase) {
             case 'cradle':
-                setPreviousShowcase(showcase);
-                return <Cradle />;
+                return ProjectShowcase(showcase, "Cradle");
             case 'quartermaster':
+                return ProjectShowcase(showcase, "Quartermaster");
             case 'caster':
+                return ProjectShowcase(showcase, "Caster");
             case 'event-manager':
+                return ProjectShowcase(showcase, "Event Manager");
             case 'event-watcher':
+                return ProjectShowcase(showcase, "Event Watcher");
             case 'continental':
+                return ProjectShowcase(showcase, "Continental");
             case 'innovation-labs':
+                return ProjectShowcase(showcase, "Innovation Labs");
             case 'thesis':
+                return ProjectShowcase(showcase, "Tacotron");
             case 'modbus':
+                return ProjectShowcase(showcase, "IOT Modbus");
             case 'edge-detection':
-                setPreviousShowcase(showcase);
-                return showcase;
+                return ProjectShowcase(showcase, "Edge Detection");
             default:
                 return WelcomeShowcase
         }
