@@ -46,7 +46,7 @@ const TextShowcase: React.FC<Props> = ({children}) => {
         <div className={styles.container}>
             <span style={
                 {
-                    textShadow: `-2px 0 black, 0 2px black, 2px 0 black, 0 -2px var(--background-color),
+                    textShadow: `-3px 0 black, 0 3px black, 3px 0 black, 0 -3px var(--background-color),
                                  ${Math.max(1, skew.x) + float.x / 10}px ${skew.y + float.y / 10}px 0 #ff0000,
                                  ${Math.max(2, skew.x * 1.5) + float.x / 10}px ${skew.y * 1.5 + float.y / 9}px 0 #00ff00, 
                                  ${Math.max(3, skew.x * 2) + float.x / 10}px ${skew.y * 2 + float.y / 8}px 0 #0000ff, 
