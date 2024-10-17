@@ -3,16 +3,29 @@ import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 
 import styles from "./Navbar.module.css";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
+import HamburgerToggle from "./HamburgerToggle";
 
 const Navbar: React.FC = () => {
+
+  const { isMobile } = useContext(ThemeContext);
+
   return (
     <div className={styles.container}>
-      <nav>
-        <Logo />
-        <a style={{ cursor: "wait", fontWeight: "bolder" }}>Portfolio: Coming Soon ...</a>
-        <HireButton />
-        <ThemeToggle />
-      </nav>
+      {isMobile ?
+        <nav>
+          <ThemeToggle />
+          <HamburgerToggle />
+        </nav>
+        :
+        <nav>
+          <Logo />
+          <a style={{ cursor: "wait", fontWeight: "bolder" }}>Portfolio: Coming Soon ...</a>
+          <HireButton />
+          <ThemeToggle />
+        </nav>}
+
     </div>
   );
 };
