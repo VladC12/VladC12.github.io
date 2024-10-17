@@ -1,0 +1,14 @@
+.container {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 3em;
+    height: 100%;
+    width: 100%;
+}
+
+.container span {
+    padding: 1em;
+}

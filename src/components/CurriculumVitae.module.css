@@ -4,16 +4,50 @@
     flex: 1;
 }
 
-.container div:first-child {
+.cv {
     flex: 0 0 60%;
-    padding: 0 0.5rem 0 0.5rem;
+    padding: 0 2rem 0 5rem;
     overflow-y: auto;
     color: var(--text-color);
     background-color: var(--background-color);
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-.container div:last-child {
+.cv h2 {
+    margin: 0.5em 0 0 0;
+    padding: 0;
+}
+
+.cv h3 {
+    margin: 0.2em;
+    padding: 0;
+}
+
+.cv .myself {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.cv .myself span {
+    font-weight: bold;
+    font-size: 2.8em;
+    padding: 1rem;
+    text-align: center;
+}
+
+.cv .myself p {
+    font-size: 1.3em;
+    padding: 1rem;
+}
+
+.cv .myself b {
+    font-size: 1.1em;
+}
+
+
+.showcase {
     flex: 1;
     height: calc(100vh - 75px);
     color: var(--text-color);
@@ -23,4 +57,52 @@
     top: 75px;
     overflow: hidden;
     transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.projects {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+.projects li {
+    padding: 1rem;
+    width: 40%;
+    border-radius: 3px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.projects li:hover{
+    background-color: var(--accent-color);
+    color: var(--anti-accent-color);
+    transform: translate(-1px, -1px);
+    box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+}
+
+.projects li:hover a {
+    color: var(--anti-accent-color);
+}
+
+.projects a {
+    color: var(--highlight-color);
+    transition: color 0.2s ease, color 0.5s ease;
+}
+
+.projects div {
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+}
+
+.projects span {
+    transition: background-color 0.5s ease, color 0.5s ease;
+    color: var(--accent-color);
+    background: var(--highlight-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 5px 8px 5px 8px;
+    font-weight: bold;
+    margin: 0.5rem 0.5rem 0 0;
 }
