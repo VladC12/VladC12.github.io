@@ -10,7 +10,7 @@ const ThemeToggle: React.FC = () => {
   const toggleTheme = () => {
     setIconAnimation(styles.comeOut);
     setTimeout(() => {
-      setIsDarkMode(!isDarkMode);
+      setIsDarkMode!(!isDarkMode);
       setIconAnimation(styles.comeIn);
     }, 500); // Duration of the comeOut animation
 
