@@ -9,14 +9,14 @@ interface Props {
 }
 
 const Showcase: React.FC<Props> = ({ showcase }) => {
-    const [displayValue, setDisplayValue] = useState<React.ReactNode>("default");
-    const [previousShowcase, setPreviousShowcase] = useState("");
-    const [animation, setAnimation] = useState("");
-
     const WelcomeShowcase = (
         <TextShowcase>
             Welcome! <br />Hover over a project to see more details.
         </TextShowcase>)
+
+    const [displayValue, setDisplayValue] = useState<React.ReactNode>(WelcomeShowcase);
+    const [previousShowcase, setPreviousShowcase] = useState("");
+    const [animation, setAnimation] = useState("");
 
     const ProjectShowcase = (showcase: string, children: any) => {
         setPreviousShowcase(showcase);
