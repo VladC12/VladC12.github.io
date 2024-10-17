@@ -1,10 +1,11 @@
 import styles from './HamburgerToggle.module.css'
 
-import { useState } from 'react'
+interface Props {
+    isActive: boolean;
+    setIsActive: (isActive: boolean) => void;
+}
 
-const HamburgerToggle = () => {
-    const [isActive, setIsActive] = useState(false)
-
+const HamburgerToggle: React.FC<Props> = ({isActive, setIsActive}) => {
     return (
         <div onClick={() => setIsActive(!isActive)}
             className={`${styles.hamburger} ${isActive && styles.active}`}>

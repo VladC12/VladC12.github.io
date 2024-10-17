@@ -3,20 +3,21 @@ import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 
 import styles from "./Navbar.module.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import HamburgerToggle from "./HamburgerToggle";
 
 const Navbar: React.FC = () => {
 
   const { isMobile } = useContext(ThemeContext);
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <div className={styles.container}>
       {isMobile ?
         <nav>
           <ThemeToggle />
-          <HamburgerToggle />
+          <HamburgerToggle isActive={isActive} setIsActive={setIsActive} />
         </nav>
         :
         <nav>
