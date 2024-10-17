@@ -32,8 +32,9 @@ const TextShowcase: React.FC<Props> = ({children}) => {
         const updateFloat = () => {
             // oscilating floating animation
             // using Date.now for a smooth animation
+            const scrollY = (window.scrollY || document.documentElement.scrollTop) - window.innerHeight / 2;
             const floatX = Math.sin(Date.now() / 1000) * 5;
-            const floatY = Math.cos(Date.now() / 1000) * 50;
+            const floatY = Math.cos(Date.now() / 1000) * 50 + scrollY / 20;
             setFloat({ x: floatX, y: floatY });
         };
 
