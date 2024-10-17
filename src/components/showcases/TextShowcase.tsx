@@ -33,12 +33,12 @@ const TextShowcase: React.FC<Props> = ({children}) => {
             // oscilating floating animation
             // using Date.now for a smooth animation
             const scrollY = (window.scrollY || document.documentElement.scrollTop) - window.innerHeight / 2;
-            const floatX = Math.sin(Date.now() / 1000) * 5;
-            const floatY = Math.cos(Date.now() / 1000) * 50 + scrollY / 20;
+            const floatX = Math.sin(Date.now() / 1000) * 5; // -5 -> 5
+            const floatY = Math.cos(Date.now() / 1000) * 50 + scrollY / 20; // -50 -> 50 + scroll
             setFloat({ x: floatX, y: floatY });
         };
 
-        const intervalId = setInterval(updateFloat, 16); // 60fps
+        const intervalId = setInterval(updateFloat, 16); // 1000ms / 60fps = ~16ms
         return () => clearInterval(intervalId);
     }, []);
 
@@ -46,7 +46,8 @@ const TextShowcase: React.FC<Props> = ({children}) => {
         <div className={styles.container}>
             <span style={
                 {
-                    textShadow: `${Math.max(1, skew.x) + float.x / 10}px ${skew.y + float.y / 10}px 0 #ff0000,
+                    textShadow: `-2px 0 black, 0 2px black, 2px 0 black, 0 -2px var(--background-color),
+                                 ${Math.max(1, skew.x) + float.x / 10}px ${skew.y + float.y / 10}px 0 #ff0000,
                                  ${Math.max(2, skew.x * 1.5) + float.x / 10}px ${skew.y * 1.5 + float.y / 9}px 0 #00ff00, 
                                  ${Math.max(3, skew.x * 2) + float.x / 10}px ${skew.y * 2 + float.y / 8}px 0 #0000ff, 
                                  ${Math.max(4, skew.x * 2.5) + float.x / 10}px ${skew.y * 2.5 + float.y / 7}px 0 #ffff00`,
