@@ -46,7 +46,6 @@
     font-size: 1.1em;
 }
 
-
 .showcase {
     flex: 1;
     height: calc(100vh - 75px);
@@ -68,12 +67,12 @@
 
 .projects li {
     padding: 1rem;
-    width: 40%;
+    max-width: 40%;
     border-radius: 3px;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
-.projects li:hover{
+.projects li:hover {
     background-color: var(--accent-color);
     color: var(--anti-accent-color);
     transform: translate(-1px, -1px);
@@ -105,4 +104,28 @@
     padding: 5px 8px 5px 8px;
     font-weight: bold;
     margin: 0.5rem 0.5rem 0 0;
+}
+
+@media (max-width: 975px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .cv {
+        flex: 1;
+        padding: 1rem;
+    }
+
+    .cv .myself {
+        flex-direction: column;
+    }
+
+    .projects {
+        padding-left: 0;
+    }
+    
+    .projects li {
+        max-width: 100%;
+        padding: 0.2rem;
+    }
 }
