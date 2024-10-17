@@ -1,7 +1,8 @@
 import styles from "./Showcase.module.css";
 import Cradle from "./showcases/Cradle";
+import TextShowcase from "./showcases/TextShowcase";
 
-import DefaultShowcase from "./showcases/DefaultShowcase";
+import DefaultShowcase from "./showcases/TextShowcase";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -30,12 +31,17 @@ const Showcase: React.FC<Props> = ({ showcase }) => {
                 setPreviousShowcase(showcase);
                 return showcase;
             default:
-                return <DefaultShowcase />;
+                return (
+                    <TextShowcase>
+                        Welcome! <br />Hover over a project to see more details.
+                    </TextShowcase>)
         }
     };
 
     useEffect(() => {
         if (showcase == "left") {
+            // When leaving a project card start leaving animation
+            // After 10s, animate the default showcase in
             const timer = setTimeout(() => {
                 setAnimation(styles.comeOut);
                 const innerTimer = setTimeout(() => {
@@ -53,6 +59,10 @@ const Showcase: React.FC<Props> = ({ showcase }) => {
             }
 
         } else if (showcase != "landing" && showcase != previousShowcase) {
+            // When entering a project card start leaving animation for the previous showcase
+            // After 400ms, animate the new showcase in
+            // If the showcase is the same as the previous one
+            // Or if it's the initial page state, do nothing
             setAnimation(styles.comeOut);
             const timer = setTimeout(() => {
                 setDisplayValue(displayShowcase());
@@ -64,6 +74,7 @@ const Showcase: React.FC<Props> = ({ showcase }) => {
             }
 
         } else {
+            setAnimation("")
             setDisplayValue(displayShowcase());
         }
     }, [showcase]);

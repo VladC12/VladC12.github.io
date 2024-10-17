@@ -1,4 +1,4 @@
-.defaultContainer {
+.container {
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -9,6 +9,6 @@
     width: 100%;
 }
 
-.defaultContainer span {
+.container span {
     padding: 1em;
 }

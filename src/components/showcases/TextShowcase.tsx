@@ -1,8 +1,12 @@
-import styles from "./DefaultShowcase.module.css";
+import styles from "./TextShowcase.module.css";
 
 import { useEffect, useState } from "react";
 
-const DefaultShowcase: React.FC = () => {
+interface Props {
+    children?: React.ReactNode;
+}
+
+const TextShowcase: React.FC<Props> = ({children}) => {
     const [skew, setSkew] = useState({ x: 0, y: 0 });
     const [float, setFloat] = useState({ x: 0, y: 0 });
 
@@ -38,7 +42,7 @@ const DefaultShowcase: React.FC = () => {
     }, []);
 
     return (
-        <div className={styles.defaultContainer}>
+        <div className={styles.container}>
             <span style={
                 {
                     textShadow: `${Math.max(1, skew.x) + float.x / 10}px ${skew.y + float.y / 10}px 0 #ff0000,
@@ -47,10 +51,10 @@ const DefaultShowcase: React.FC = () => {
                                  ${Math.max(4, skew.x * 2.5) + float.x / 10}px ${skew.y * 2.5 + float.y / 7}px 0 #ffff00`,
                     transform: `skew(${skew.x}deg, ${skew.y}deg) translate(${float.x}px, ${float.y}px)`
                 }}>
-                Welcome! <br />Hover over a project to see more details.
+                {children}
             </span>
         </div>
     )
 }
 
-export default DefaultShowcase;
+export default TextShowcase;
