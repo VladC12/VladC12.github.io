@@ -2,7 +2,6 @@ import styles from "./Showcase.module.css";
 import Cradle from "./showcases/Cradle";
 import TextShowcase from "./showcases/TextShowcase";
 
-import DefaultShowcase from "./showcases/TextShowcase";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -13,6 +12,11 @@ const Showcase: React.FC<Props> = ({ showcase }) => {
     const [displayValue, setDisplayValue] = useState<React.ReactNode>("default");
     const [previousShowcase, setPreviousShowcase] = useState("");
     const [animation, setAnimation] = useState("");
+
+    const WelcomeShowcase = (
+        <TextShowcase>
+            Welcome! <br />Hover over a project to see more details.
+        </TextShowcase>)
 
     const displayShowcase = () => {
         switch (showcase) {
@@ -31,10 +35,7 @@ const Showcase: React.FC<Props> = ({ showcase }) => {
                 setPreviousShowcase(showcase);
                 return showcase;
             default:
-                return (
-                    <TextShowcase>
-                        Welcome! <br />Hover over a project to see more details.
-                    </TextShowcase>)
+                return WelcomeShowcase
         }
     };
 
@@ -45,7 +46,7 @@ const Showcase: React.FC<Props> = ({ showcase }) => {
             const timer = setTimeout(() => {
                 setAnimation(styles.comeOut);
                 const innerTimer = setTimeout(() => {
-                    setDisplayValue(<DefaultShowcase />);
+                    setDisplayValue(WelcomeShowcase);
                     setPreviousShowcase("left")
                     setAnimation(styles.comeIn);
                 }, 500)
@@ -65,16 +66,18 @@ const Showcase: React.FC<Props> = ({ showcase }) => {
             // Or if it's the initial page state, do nothing
             setAnimation(styles.comeOut);
             const timer = setTimeout(() => {
-                setDisplayValue(displayShowcase());
                 setAnimation(styles.comeIn);
+                setDisplayValue(displayShowcase());
             }, 400);
 
             return () => {
+                // Ensure even if animation does not finish, the showcase is displayed
                 clearTimeout(timer);
+                setAnimation(styles.comeIn);
+                setDisplayValue(displayShowcase());
             }
 
         } else {
-            setAnimation("")
             setDisplayValue(displayShowcase());
         }
     }, [showcase]);
