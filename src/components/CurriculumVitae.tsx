@@ -8,12 +8,26 @@ const CurriculumVitae: React.FC = () => {
 
     const [showcase, setShowcase] = useState<string>("landing");
 
-    const handleHover = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-        const ilElement = e.currentTarget;
-        if (ilElement) {
-            setShowcase(ilElement.id);
-        }
+    const handleHover = (e: React.MouseEvent<HTMLLIElement | HTMLDivElement, MouseEvent>) => {
+        let hoverTimeout: ReturnType<typeof setTimeout>;
+        const element = e.currentTarget;
+
+        // Delay the showcase change to prevent flickering and
+        // unintended showcase changes
+        hoverTimeout = setTimeout(() => {
+            if (element) {
+                setShowcase(element.id);
+            }
+        }, 200);
+
+        e.currentTarget.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimeout);
+        });
     }
+
+    const handleLeave = () => {
+        setShowcase("left");
+    } 
 
     const { isMobile } = useContext(ThemeContext);
 
@@ -182,7 +196,7 @@ const CurriculumVitae: React.FC = () => {
                 </div>
             </div>
             {!isMobile && 
-            <div className={styles.showcase}>
+            <div id="showcase" onMouseEnter={handleHover} onMouseLeave={handleLeave} className={styles.showcase}>
                 <Showcase showcase={showcase} />
             </div>}
 
