@@ -8,15 +8,17 @@ interface ShowcaseItem {
 
 interface Props {
     childrenItems: ShowcaseItem[];
+    zoomFactor?: number;
 }
 
-const ShowcaseCard: React.FC<Props> = ({ childrenItems }) => {
+const ShowcaseCard: React.FC<Props> = ({ childrenItems, zoomFactor = 1.3 }) => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     const calculateTransform = (index: number) => {
         const middleIndex = childrenItems.length / 2;
         const offsetY = (middleIndex - index) * 5 - 5;
-        return `scale(${Math.max(childrenItems.length / 1.8, 1.3)}) translate(-10vw, ${offsetY}vh)`;
+        
+        return `scale(${Math.max(childrenItems.length / 1.8, zoomFactor)}) translate(-10vw, ${offsetY}vh)`;
     };
 
     return (
