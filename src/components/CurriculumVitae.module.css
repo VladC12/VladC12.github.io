@@ -13,6 +13,10 @@
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+.cv ul {
+    list-style-type: none;
+}
+
 .cv h2 {
     margin: 0.5em 0 0 0;
     padding: 0;
@@ -61,7 +65,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    list-style-type: none;
 }
 
 .projects li {
