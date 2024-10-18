@@ -54,7 +54,6 @@
     position: -webkit-sticky;
     position: sticky;
     top: 75px;
-    overflow: hidden;
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
