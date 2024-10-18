@@ -8,12 +8,26 @@ const CurriculumVitae: React.FC = () => {
 
     const [showcase, setShowcase] = useState<string>("landing");
 
-    const handleHover = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-        const ilElement = e.currentTarget;
-        if (ilElement) {
-            setShowcase(ilElement.id);
-        }
+    const handleHover = (e: React.MouseEvent<HTMLLIElement | HTMLDivElement, MouseEvent>) => {
+        let hoverTimeout: ReturnType<typeof setTimeout>;
+        const element = e.currentTarget;
+
+        // Delay the showcase change to prevent flickering and
+        // unintended showcase changes
+        hoverTimeout = setTimeout(() => {
+            if (element) {
+                setShowcase(element.id);
+            }
+        }, 200);
+
+        e.currentTarget.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimeout);
+        });
     }
+
+    const handleLeave = () => {
+        setShowcase("left");
+    } 
 
     const { isMobile } = useContext(ThemeContext);
 
@@ -108,6 +122,7 @@ const CurriculumVitae: React.FC = () => {
                             electronics in a team of four people, for prototype devices.
                         </p>
                         <h2>Projects</h2>
+                        <p>Most of the work was on the electronics side honestly.</p>
                         <ul className={styles.projects}>
                             <li id="continental" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
                                 <h3>Internship Project</h3>
@@ -137,6 +152,7 @@ const CurriculumVitae: React.FC = () => {
                         <h3>Bachelor of Engineeering, UTCN, Faculty of Electronics, Telecommunications and Technology Information</h3>
                         <p>Telecommunication Technologies and System specialization.</p>
                         <h2>Projects</h2>
+                        <p>The projects here might not be as impressive but I decided to add them nonetheless.</p>
                         <ul className={styles.projects}>
                             <li id="thesis" onMouseEnter={handleHover}>
                                 <h3>Bachelor Thesis: Tacotron 2 DNN Text-To-Speech Web App</h3>
@@ -178,11 +194,11 @@ const CurriculumVitae: React.FC = () => {
                     </li>
                 </ul>
                 <div>
-                    Download CV and Source Code for website
+                   TODO: Add footer, download resume and link to source code: https://github.com/VladC12/VladC12.github.io
                 </div>
             </div>
             {!isMobile && 
-            <div className={styles.showcase}>
+            <div id="showcase" onMouseEnter={handleHover} onMouseLeave={handleLeave} className={styles.showcase}>
                 <Showcase showcase={showcase} />
             </div>}
 

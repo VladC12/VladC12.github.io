@@ -1,18 +1,22 @@
 .default {
     --accent-color: #5114a1;
+    --accent-color-glass: #5114a169;
     --anti-accent-color: #ffffff;
     --svg-accent-filter: invert(15%) sepia(38%) saturate(6058%) hue-rotate(260deg) brightness(95%) contrast(111%);
     --text-color: #000000;
     --background-color: #ffffff;
+    --background-color-glass: #ffffff83;
     --highlight-color: #987acf;
 }
 
 .dark{
     --accent-color: #241F31;
+    --accent-color-glass: #241F3169;
     --anti-accent-color: #ffffff;
     --svg-accent-filter: invert(9%) sepia(35%) saturate(757%) hue-rotate(215deg) brightness(96%) contrast(90%);
     --text-color: #ffffff;
     --background-color: #2B2B2B;
+    --background-color-glass: #2b2b2b83;
     --highlight-color: #685bdf;
 }
 
@@ -20,4 +24,5 @@ body {
     margin: 0;
     height: 100%;
     font-family: 'Courier New', Courier, monospace;
+    overflow-x: hidden;
 }
