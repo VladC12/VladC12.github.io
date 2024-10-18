@@ -11,8 +11,8 @@ const ContentShowcase: React.FC<Props> = ({ children }) => {
   const [float, setFloat] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const skewXConstant = 2;
-    const skewYConstant = 4;
+    const skewXConstant = 1.5;
+    const skewYConstant = 1.5;
 
     const { clientX, clientY } = event;
     const skewX = (clientX / window.innerWidth) * skewXConstant; // between 0 and skewXConstant
