@@ -55,8 +55,8 @@ const Showcase: React.FC<Props> = ({ showcase }) => {
                     { imgSrc: "src/assets/EventWatcher2.png", text: "View a 5 seconds video snippet of the event for review." }
                 ]} />);
             case 'continental':
-                return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[
-                    { imgSrc: "https://dummyimage.com/500x400/5114a1/fff&text=Continental+Logo+?+Maybe+?", text: "I got to use their in-house drive units, wire it to an Arduino and controll with a bike hanlde." }
+                return ProjectShowcase(showcase, <ShowcaseCard zoomFactor={1.1} childrenItems={[
+                    { imgSrc: "src/assets/Conti1.jpeg", text: "I got to use their in-house drive units, wire it to an Arduino and controll with a bike hanlde." }
                 ]} />);
             case 'innovation-labs':
                 return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[
