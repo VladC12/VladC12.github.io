@@ -30,10 +30,7 @@ const ShowcaseCard: React.FC<Props> = ({ childrenItems, zoomFactor = 1.3 }) => {
                     onMouseLeave={() => setHoveredIndex(null)}
                     style={hoveredIndex === index ? {
                         zIndex: 99,
-                        transform: calculateTransform(index),
-                        backgroundColor: 'var(--background-color-glass)',
-                        borderRadius: '20px',
-                        backdropFilter: `blur(3px)`
+                        transform: calculateTransform(index)
                     } : {}}
                 >
                     <img style={{ animationDelay: `${Math.random() * -5}s` }} src={item.imgSrc} alt="image not found" />

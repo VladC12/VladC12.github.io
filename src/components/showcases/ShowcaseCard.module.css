@@ -19,7 +19,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.5s; 
+    transition: transform 0.5s;
 }
 
 .container img {
@@ -42,15 +42,23 @@
     animation: text-pulse 10s infinite;
 }
 
+.container div:hover span {
+    background-color: var(--background-color-glass);
+    border-radius: 5px;
+    backdrop-filter: blur(3px);
+}
+
 @keyframes slow-pulse {
     0% {
         transform: scale(1) translateX(-10px);
         box-shadow: 3.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.25);
     }
+
     50% {
         transform: scale(1.01) translateX(10px);
         box-shadow: 8.0px 3.0px 8.0px hsl(0deg 0% 0% / 0.25);
     }
+
     100% {
         transform: scale(1) translateX(-10px);
         box-shadow: 3.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.25);
@@ -62,10 +70,12 @@
         transform: translateX(-5px);
         text-shadow: hsl(0deg 0% 0% / 0.25) 1px 2px;
     }
+
     50% {
         transform: translateX(5px);
         text-shadow: hsl(0deg 0% 0% / 0.25) 2px 1px;
     }
+
     100% {
         transform: translateX(-5px);
         text-shadow: hsl(0deg 0% 0% / 0.25) 1px 2px;
