@@ -1,5 +1,6 @@
 import styles from './App.module.css'
 
+import AnimatedBackground from './components/AnimatedBackground'
 import Navbar from './components/Navbar'
 import CurriculumVitae from './components/CurriculumVitae'
 import Footer from './components/Footer';
@@ -13,6 +14,7 @@ const App = () => {
 
   return (
     <div className={styles[isDarkMode ? "dark" : "default"]}>
+      <AnimatedBackground darkMode={isDarkMode} />
       <Navbar />
       <CurriculumVitae />
       <Footer />
