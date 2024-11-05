@@ -32,7 +32,7 @@ const Showcase: React.FC<Props> = ({ showcase }) => {
         switch (showcase) {
             case 'cradle':
                 return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[
-                    { imgSrc: "https://dummyimage.com/500x400/5114a1/fff&text=I+Need+To+Get+An+Image", text: "Based on the configuration from Caster run inference on multiple RTSP streams and send metadata and events to an endpoint or just display it." },
+                    { imgSrc: "./Cradle1.png", text: "Based on the configuration from Caster run inference on multiple RTSP streams and send metadata and events to an endpoint or just display it." },
                 ]} />);
             case 'quartermaster':
                 return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[

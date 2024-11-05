@@ -11,10 +11,15 @@ vi.mock('./components/CurriculumVitae', () => ({
   default: () => <div>Mocked CurriculumVitae</div>,
 }));
 
+vi.mock('./components/AnimatedBackground', () => ({
+  default: () => <div>Mocked AnimatedBackground</div>,
+}));
+
 describe('App Component', () => {
   it('renders correctly', () => {
     render(<App />);
     expect(screen.getByText('Mocked Navbar')).toBeInTheDocument();
     expect(screen.getByText('Mocked CurriculumVitae')).toBeInTheDocument();
+    expect(screen.getByText('Mocked AnimatedBackground')).toBeInTheDocument();
   });
 });

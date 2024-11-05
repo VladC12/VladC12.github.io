@@ -193,9 +193,6 @@ const CurriculumVitae: React.FC = () => {
                         <p>Mathematics and Informatics</p>
                     </li>
                 </ul>
-                <div>
-                   TODO: Add footer, download resume and link to source code: https://github.com/VladC12/VladC12.github.io
-                </div>
             </div>
             {!isMobile && 
             <div id="showcase" onMouseEnter={handleHover} onMouseLeave={handleLeave} className={styles.showcase}>
