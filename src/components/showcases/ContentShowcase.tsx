@@ -43,7 +43,9 @@ const ContentShowcase: React.FC<Props> = ({ children }) => {
   }, []);
 
   return (
-    <div className={styles.container}
+    <div
+      data-testid="content-showcase"
+      className={styles.container}
       style={
         {
           transform: `skew(${skew.x}deg, ${skew.y}deg) translate(${float.x}px, ${float.y}px)`
