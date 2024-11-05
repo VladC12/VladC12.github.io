@@ -1,0 +1,52 @@
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 0;
+    text-align: center;
+}
+
+a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+a:hover {
+    animation: glitch 1s infinite;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+p {
+    margin: 0;
+    font-size: 14px;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: -0.1em -0.1em 0 #ff0000, 0.1em 0.1em 0 #00ff00, 0.1em -0.1em #0000ff;
+    }
+
+    25% {
+        text-shadow: 0.1em -0.1em 0 #ff0000, -0.1em 0.1em 0 #00ff00, 0.1em 0.1em #0000ff;
+    }
+
+    50% {
+        text-shadow: -0.1em 0.1em 0 #ff0000, 0.1em -0.1em 0 #00ff00, -0.1em -0.1em #0000ff;
+    }
+
+    75% {
+        text-shadow: 0.1em 0.1em 0 #ff0000, -0.1em -0.1em 0 #00ff00, -0.1em 0.1em #0000ff;
+    }
+
+    100% {
+        text-shadow: -0.1em -0.1em 0 #ff0000, 0.1em 0.1em 0 #00ff00, 0.1em -0.1em #0000ff;
+    }
+}
