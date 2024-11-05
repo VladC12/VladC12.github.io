@@ -9,6 +9,7 @@ This repository contains the source code for Vlad Crehul's CV/portfolio website.
 - **Vite**: A fast build tool and development server.
 - **CSS Modules**: For scoped and modular CSS.
 - **Vitest**: A fast unit test framework.
+-- **React Three Fiber**: A React renderer for three.js for 3d animations.
 
 ## Features
 
