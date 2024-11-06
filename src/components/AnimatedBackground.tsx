@@ -82,7 +82,7 @@ const Triangles = (props: TrianglesProps) => {
 const AnimatedBackground = ({ darkMode }: Props) => {
   return (
     <div className={styles.container} style={{ width: '100vw', height: '100vh' }}>
-      <Canvas camera={{ position: [0, 0, 500], fov: 90 }}>
+      <Canvas camera={{ position: [0, 0, 500], fov: 75 }}>
         <Triangles darkMode={darkMode} />
       </Canvas>
     </div>
