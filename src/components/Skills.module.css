@@ -83,3 +83,16 @@
     max-height: 100%;
     filter: var(--svg-accent-filter);
 }
+
+@media (max-width: 975px) {
+    .container {
+        gap: 10px;
+    }
+    .container div {
+        height: 50px;
+    }
+
+    .container span {
+        font-size: 1em;
+    }
+}

@@ -3,6 +3,7 @@
     color: #fff;
     padding: 5px 0;
     text-align: center;
+    overflow: hidden;
 }
 
 a {
@@ -17,7 +18,7 @@ a:hover {
 .container {
     width: 100%;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,6 +28,16 @@ a:hover {
 p {
     margin: 0;
     font-size: 14px;
+}
+
+@media (max-width: 975px) {
+    .footer p {
+        font-size: 10px;
+    }
+
+    .footer a {
+        font-size: 12px;
+    }
 }
 
 @keyframes glitch {
