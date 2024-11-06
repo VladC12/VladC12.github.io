@@ -1,6 +1,7 @@
 import { ThemeContext } from "../context/ThemeContext";
 import styles from "./CurriculumVitae.module.css";
 import Showcase from "./Showcase";
+import Skills from "./Skills";
 
 import { useState, useContext } from "react";
 
@@ -40,7 +41,7 @@ const CurriculumVitae: React.FC = () => {
                         artificial intelligence. My main professional focus is <b>web development</b>. Especially in <b>React</b> and <b>NextJS</b>.</p>
                 </div>
                 <h2>Skills</h2>
-                <p>TODO: Icons and whatnot for React, Python, Typescript, NextJS, NodeJS</p>
+                <Skills />
                 <h2>Experience</h2>
                 <ul>
                     <li>
