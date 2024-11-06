@@ -39,7 +39,7 @@ const Triangles = (props: TrianglesProps) => {
   // Generate delaunay triangulation
   // https://ianthehenry.com/posts/delaunay/
   // https://github.com/mapbox/delaunator
-  const points = useMemo(() => generatePoints(100, window.innerWidth, window.innerHeight), []);
+  const points = useMemo(() => generatePoints(200, window.innerWidth, window.innerHeight), []);
   const delaunay = useMemo(() => Delaunator.from(points), [points]);
 
   // Extract triangles
@@ -54,11 +54,27 @@ const Triangles = (props: TrianglesProps) => {
     return triangles;
   }, [delaunay, points]);
 
+  const colors = useMemo(() => triangles.map(() => getRandomColor(props.darkMode)), [triangles, props.darkMode]);
+
   // Add triangles to the scene
   useEffect(() => {
     if (ref.current) {
       const group = ref.current;
-      triangles.forEach(triangle => {
+
+      // Cleanup old meshes
+      while (group.children.length > 0) {
+        const mesh = group.children[0];
+        group.remove(mesh);
+        (mesh as THREE.Mesh).geometry.dispose();
+        const material = (mesh as THREE.Mesh).material;
+        if (Array.isArray(material)) {
+          material.forEach(mat => mat.dispose());
+        } else {
+          material.dispose();
+        }
+      }
+
+      triangles.forEach((triangle, index) => {
         const geometry = new THREE.BufferGeometry();
         const vertices = new Float32Array([
           triangle[0][0], triangle[0][1], 0,
@@ -66,7 +82,7 @@ const Triangles = (props: TrianglesProps) => {
           triangle[2][0], triangle[2][1], 0,
         ]);
         geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
-        const material = new THREE.MeshBasicMaterial({ color: getRandomColor(props.darkMode), side: THREE.DoubleSide });
+        const material = new THREE.MeshBasicMaterial({ color: colors[index], side: THREE.DoubleSide });
         const mesh = new THREE.Mesh(geometry, material);
         group.add(mesh);
       });
@@ -78,12 +94,25 @@ const Triangles = (props: TrianglesProps) => {
   useFrame(({ clock }) => {
     if (ref.current) {
       const time = clock.getElapsedTime();
-      ref.current.children.forEach((mesh) => {
+      ref.current.children.forEach((mesh, index) => {
         const geometry = (mesh as THREE.Mesh).geometry;
         const position = geometry.attributes.position;
+        const material = (mesh as THREE.Mesh).material as THREE.MeshBasicMaterial;
+
         for (let i = 0; i < position.count; i++) {
+          // Move vertices up and down
           const y = position.getY(i);
-          position.setZ(i, Math.sin(y * 0.1 + time) * 10);
+          const z = Math.sin(y * 0.1 + time) * 10;
+          position.setZ(i, z);
+
+          const currentColor = colors[index];
+
+          // Darken color based on z position
+          const intensity = Math.min(1, z / (props.darkMode ? 3 : 10));
+          const newColor = new THREE.Color(currentColor).multiplyScalar(1 + intensity * (props.darkMode ? 0.2 : 0.5));
+
+          material.color.set(newColor);
+
         }
         position.needsUpdate = true;
       });
