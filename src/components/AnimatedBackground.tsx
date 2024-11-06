@@ -12,7 +12,8 @@ interface TrianglesProps extends GroupProps {
   darkMode: boolean;
 }
 
-const generatePoints = (numPoints: number, width: number, height: number) => {
+// Generate random points within a given width and height
+export const generatePoints = (numPoints: number, width: number, height: number) => {
   const points = [];
   for (let i = 0; i < numPoints; i++) {
     points.push([Math.random() * width - width / 2, Math.random() * height - height / 2]);
@@ -20,18 +21,28 @@ const generatePoints = (numPoints: number, width: number, height: number) => {
   return points;
 };
 
-const getRandomColor = (darkMode: boolean) => {
+// Generate a random color for the triangles based on theme
+export const getRandomColor = (darkMode: boolean) => {
+  const maxDark = 30;
+  const maxLight = 200;
+
   const value = darkMode ?
-    Math.floor(Math.random() * (43 - 30) + 30) :
-    Math.floor(Math.random() * (255 - 200) + 200);
+    Math.floor(Math.random() * (43 - maxDark) + maxDark) :
+    Math.floor(Math.random() * (255 - maxLight) + maxLight);
   const hex = value.toString(16).padStart(2, '0');
   return `#${hex}${hex}${hex}`;
 };
 
 const Triangles = (props: TrianglesProps) => {
   const ref = useRef<THREE.Group>(null);
-  const points = useMemo(() => generatePoints(100, window.innerWidth, window.innerHeight), []);
+
+  // Generate delaunay triangulation
+  // https://ianthehenry.com/posts/delaunay/
+  // https://github.com/mapbox/delaunator
+  const points = useMemo(() => generatePoints(200, window.innerWidth, window.innerHeight), []);
   const delaunay = useMemo(() => Delaunator.from(points), [points]);
+
+  // Extract triangles
   const triangles = useMemo(() => {
     const triangles = [];
     for (let i = 0; i < delaunay.triangles.length; i += 3) {
@@ -43,10 +54,27 @@ const Triangles = (props: TrianglesProps) => {
     return triangles;
   }, [delaunay, points]);
 
+  const colors = useMemo(() => triangles.map(() => getRandomColor(props.darkMode)), [triangles, props.darkMode]);
+
+  // Add triangles to the scene
   useEffect(() => {
     if (ref.current) {
       const group = ref.current;
-      triangles.forEach(triangle => {
+
+      // Cleanup old meshes
+      while (group.children.length > 0) {
+        const mesh = group.children[0];
+        group.remove(mesh);
+        (mesh as THREE.Mesh).geometry.dispose();
+        const material = (mesh as THREE.Mesh).material;
+        if (Array.isArray(material)) {
+          material.forEach(mat => mat.dispose());
+        } else {
+          material.dispose();
+        }
+      }
+
+      triangles.forEach((triangle, index) => {
         const geometry = new THREE.BufferGeometry();
         const vertices = new Float32Array([
           triangle[0][0], triangle[0][1], 0,
@@ -54,22 +82,37 @@ const Triangles = (props: TrianglesProps) => {
           triangle[2][0], triangle[2][1], 0,
         ]);
         geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
-        const material = new THREE.MeshBasicMaterial({ color: getRandomColor(props.darkMode), side: THREE.DoubleSide });
+        const material = new THREE.MeshBasicMaterial({ color: colors[index], side: THREE.DoubleSide });
         const mesh = new THREE.Mesh(geometry, material);
         group.add(mesh);
       });
     }
+    // Scene updates when theme changes
   }, [triangles, props.darkMode]);
 
+  // Animate trinagles
   useFrame(({ clock }) => {
     if (ref.current) {
       const time = clock.getElapsedTime();
-      ref.current.children.forEach((mesh) => {
+      ref.current.children.forEach((mesh, index) => {
         const geometry = (mesh as THREE.Mesh).geometry;
         const position = geometry.attributes.position;
+        const material = (mesh as THREE.Mesh).material as THREE.MeshBasicMaterial;
+
         for (let i = 0; i < position.count; i++) {
+          // Move vertices up and down
           const y = position.getY(i);
-          position.setZ(i, Math.sin(y * 0.1 + time) * 10);
+          const z = Math.sin(y * 0.1 + time) * 10;
+          position.setZ(i, z);
+
+          const currentColor = colors[index];
+
+          // Darken color based on z position
+          const intensity = Math.min(1, z / (props.darkMode ? 3 : 10));
+          const newColor = new THREE.Color(currentColor).multiplyScalar(1 + intensity * (props.darkMode ? 0.2 : 0.5));
+
+          material.color.set(newColor);
+
         }
         position.needsUpdate = true;
       });
@@ -81,8 +124,8 @@ const Triangles = (props: TrianglesProps) => {
 
 const AnimatedBackground = ({ darkMode }: Props) => {
   return (
-    <div className={styles.container} style={{ width: '100vw', height: '100vh' }}>
-      <Canvas camera={{ position: [0, 0, 500], fov: 90 }}>
+    <div className={styles.container}>
+      <Canvas camera={{ position: [0, 0, 500], fov: 75 }}>
         <Triangles darkMode={darkMode} />
       </Canvas>
     </div>

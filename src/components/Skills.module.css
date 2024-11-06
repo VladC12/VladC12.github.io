@@ -1,0 +1,98 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 30px;
+    margin-bottom: 2em;
+}
+
+.container div {
+    height: 60px;
+    margin-top: 3px;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    padding: 4px 5px 4px 5px;
+    border-radius: 10px;
+    background: var(--highlight-color);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 0 1 auto;
+    max-height: 100%;
+    max-width: 100%;
+    position: relative;
+}
+
+/* 
+    css variables can't be animated by default
+    so we need to use a custom property to control angle   
+    it's experimental and not supported by all browsers
+*/
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.container div::after,
+.container div::before {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle),
+            red, blue, green, yellow, red);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    padding: 3px;
+    border-radius: 10px;
+    animation: 3s spin linear infinite;
+}
+
+.container div:hover::after {
+    opacity: 0.2;
+}
+
+.container div:hover::before {
+    opacity: 1;
+    filter: blur(10px);
+}
+
+@keyframes spin {
+    0% {
+        --angle: 0deg;
+    }
+
+    100% {
+        --angle: 360deg;
+    }
+}
+
+.container span {
+    margin: 4px 4px 0px 6px;
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.container img {
+    max-height: 100%;
+    filter: var(--svg-accent-filter);
+}
+
+@media (max-width: 975px) {
+    .container {
+        gap: 10px;
+    }
+    .container div {
+        height: 50px;
+    }
+
+    .container span {
+        font-size: 1em;
+    }
+}

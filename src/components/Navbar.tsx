@@ -27,7 +27,6 @@ const Navbar: React.FC = () => {
         :
         <nav>
           <Logo />
-          <a style={{ cursor: "wait", fontWeight: "bolder" }}>Portfolio: Coming Soon ...</a>
           <HireButton />
           <ThemeToggle />
         </nav>}
