@@ -12,7 +12,8 @@ interface TrianglesProps extends GroupProps {
   darkMode: boolean;
 }
 
-const generatePoints = (numPoints: number, width: number, height: number) => {
+// Generate random points within a given width and height
+export const generatePoints = (numPoints: number, width: number, height: number) => {
   const points = [];
   for (let i = 0; i < numPoints; i++) {
     points.push([Math.random() * width - width / 2, Math.random() * height - height / 2]);
@@ -20,18 +21,28 @@ const generatePoints = (numPoints: number, width: number, height: number) => {
   return points;
 };
 
-const getRandomColor = (darkMode: boolean) => {
+// Generate a random color for the triangles based on theme
+export const getRandomColor = (darkMode: boolean) => {
+  const maxDark = 30;
+  const maxLight = 200;
+
   const value = darkMode ?
-    Math.floor(Math.random() * (43 - 30) + 30) :
-    Math.floor(Math.random() * (255 - 200) + 200);
+    Math.floor(Math.random() * (43 - maxDark) + maxDark) :
+    Math.floor(Math.random() * (255 - maxLight) + maxLight);
   const hex = value.toString(16).padStart(2, '0');
   return `#${hex}${hex}${hex}`;
 };
 
 const Triangles = (props: TrianglesProps) => {
   const ref = useRef<THREE.Group>(null);
+
+  // Generate delaunay triangulation
+  // https://ianthehenry.com/posts/delaunay/
+  // https://github.com/mapbox/delaunator
   const points = useMemo(() => generatePoints(100, window.innerWidth, window.innerHeight), []);
   const delaunay = useMemo(() => Delaunator.from(points), [points]);
+
+  // Extract triangles
   const triangles = useMemo(() => {
     const triangles = [];
     for (let i = 0; i < delaunay.triangles.length; i += 3) {
@@ -43,6 +54,7 @@ const Triangles = (props: TrianglesProps) => {
     return triangles;
   }, [delaunay, points]);
 
+  // Add triangles to the scene
   useEffect(() => {
     if (ref.current) {
       const group = ref.current;
@@ -59,8 +71,10 @@ const Triangles = (props: TrianglesProps) => {
         group.add(mesh);
       });
     }
+    // Scene updates when theme changes
   }, [triangles, props.darkMode]);
 
+  // Animate trinagles
   useFrame(({ clock }) => {
     if (ref.current) {
       const time = clock.getElapsedTime();
@@ -81,7 +95,7 @@ const Triangles = (props: TrianglesProps) => {
 
 const AnimatedBackground = ({ darkMode }: Props) => {
   return (
-    <div className={styles.container} style={{ width: '100vw', height: '100vh' }}>
+    <div className={styles.container}>
       <Canvas camera={{ position: [0, 0, 500], fov: 75 }}>
         <Triangles darkMode={darkMode} />
       </Canvas>
