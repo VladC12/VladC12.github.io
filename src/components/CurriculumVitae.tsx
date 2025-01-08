@@ -31,7 +31,6 @@ const CurriculumVitae: React.FC = () => {
     } 
 
     const { isMobile } = useContext(ThemeContext);
-
     return (
         <div className={styles.container}>
             <div className={styles.cv}>

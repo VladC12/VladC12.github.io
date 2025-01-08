@@ -102,6 +102,7 @@
 .projects a {
     color: var(--highlight-color);
     transition: color 0.2s ease, color 0.5s ease;
+    word-wrap: break-word; /* Break long words */
 }
 
 .projects div {
