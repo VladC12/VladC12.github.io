@@ -3,11 +3,58 @@ import ContentShowcase from "./showcases/ContentShowcase";
 import ShowcaseCard from "./showcases/ShowcaseCard";
 import TextShowcase from "./showcases/TextShowcase";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 interface Props {
     showcase: string;
 }
+
+interface Project {
+    imgSrc: string;
+    text: string;
+  }
+  
+interface ProjectData {
+[key: string]: Project[];
+}
+
+const projectData: ProjectData = {
+    cradle: [
+      { imgSrc: "./Cradle1.png", text: "Based on the configuration from Caster run inference on multiple RTSP streams and send metadata and events to an endpoint or just display it." }
+    ],
+    quartermaster: [
+      { imgSrc: "./Quartermaster1.png", text: "Organise and review large datasets. Create archives for quick dataset creation for specific needs." },
+      { imgSrc: "./Quartermaster2.png", text: "Preview text, images, videos and 3D models. Review upload and download history!" }
+    ],
+    caster: [
+      { imgSrc: "./Caster1.png", text: "Add or remove streams and export the configuration file." },
+      { imgSrc: "./Caster2.png", text: "Create ROIs for AI model to utilise." },
+      { imgSrc: "./Caster3.png", text: "Associate points on stream to a planogram for heatmap visualisation!" }
+    ],
+    'event-manager': [
+      { imgSrc: "./EventManager1.png", text: "Visualise all the fraud attempts, review them and create reports." }
+    ],
+    'event-watcher': [
+      { imgSrc: "./EventWatcher1.png", text: "Live notifications of fraud attempts or other events which can be customised." },
+      { imgSrc: "./EventWatcher2.png", text: "View a 5 seconds video snippet of the event for review." }
+    ],
+    continental: [
+      { imgSrc: "./Conti1.jpeg", text: "I got to use their in-house drive units, wire it to an Arduino and controll with a bike hanlde." }
+    ],
+    'innovation-labs': [
+      { imgSrc: "./Inno1.png", text: "The first hackaton I participated in and we got to the semi-finals and got an internship too." }
+    ],
+    thesis: [
+      { imgSrc: "./Thesis1.png", text: "The website made to showcase the trained AI model." },
+      { imgSrc: "./Thesis2.png", text: "Results from the first attempt to train the LJSpeech model." }
+    ],
+    modbus: [
+      { imgSrc: "./Modbus1.png", text: "The website which would visualise the recieved data from the modbus. There was also history of each document." }
+    ],
+    'edge-detection': [
+      { imgSrc: "./PNI1.png", text: "A simple university project with a rudimentary GUI." }
+    ]
+  };
 
 const Showcase: React.FC<Props> = ({ showcase }) => {
     const WelcomeShowcase = (
@@ -28,57 +75,12 @@ const Showcase: React.FC<Props> = ({ showcase }) => {
         )
     }
 
-    const displayShowcase = (showcase: string) => {
-        switch (showcase) {
-            case 'cradle':
-                return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[
-                    { imgSrc: "./Cradle1.png", text: "Based on the configuration from Caster run inference on multiple RTSP streams and send metadata and events to an endpoint or just display it." },
-                ]} />);
-            case 'quartermaster':
-                return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[
-                    { imgSrc: "./Quartermaster1.png", text: "Organise and review large datasets. Create archives for quick dataset creation for specific needs." },
-                    { imgSrc: "./Quartermaster2.png", text: "Preview text, images, videos and 3D models. Review upload and download history!" }
-                ]} />);
-            case 'caster':
-                return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[
-                    { imgSrc: "./Caster1.png", text: "Add or remove streams and export the configuration file." },
-                    { imgSrc: "./Caster2.png", text: "Create ROIs for AI model to utilise." },
-                    { imgSrc: "./Caster3.png", text: "Associate points on stream to a planogram for heatmap visualisation!" }
-                ]} />);
-            case 'event-manager':
-                return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[
-                    { imgSrc: "./EventManager1.png", text: "Visualise all the fraud attempts, review them and create reports." }
-                ]} />);
-            case 'event-watcher':
-                return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[
-                    { imgSrc: "./EventWatcher1.png", text: "Live notifications of fraud attempts or other events which can be customised." },
-                    { imgSrc: "./EventWatcher2.png", text: "View a 5 seconds video snippet of the event for review." }
-                ]} />);
-            case 'continental':
-                return ProjectShowcase(showcase, <ShowcaseCard zoomFactor={1.1} childrenItems={[
-                    { imgSrc: "./Conti1.jpeg", text: "I got to use their in-house drive units, wire it to an Arduino and controll with a bike hanlde." }
-                ]} />);
-            case 'innovation-labs':
-                return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[
-                    { imgSrc: "./Inno1.png", text: "The first hackaton I participated in and we got to the semi-finals and got an internship too." }
-                ]} />);
-            case 'thesis':
-                return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[
-                    { imgSrc: "./Thesis1.png", text: "The website made to showcase the trained AI model." },
-                    { imgSrc: "./Thesis2.png", text: "Results from the first attempt to train the LJSpeech model." }
-                ]} />);
-            case 'modbus':
-                return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[
-                    { imgSrc: "./Modbus1.png", text: "The website which would visualise the recieved data from the modbus. There was also history of each document." }
-                ]} />);
-            case 'edge-detection':
-                return ProjectShowcase(showcase, <ShowcaseCard childrenItems={[
-                    { imgSrc: "./PNI1.png", text: "A simple university project with a rudimentary GUI." }
-                ]} />);
-            default:
-                return WelcomeShowcase
+    const displayShowcase = useCallback((showcase: string) => {
+        if (projectData[showcase]) {
+          return ProjectShowcase(showcase, <ShowcaseCard childrenItems={projectData[showcase]} />);
         }
-    };
+        return WelcomeShowcase;
+      }, [ProjectShowcase, WelcomeShowcase]);
 
     useEffect(() => {
         if (showcase == "left") {
