@@ -1,8 +1,9 @@
 import * as THREE from 'three';
-import { useRef, useMemo, useEffect } from 'react';
+import { useRef, useMemo, useEffect, useState, memo } from 'react';
 import { Canvas, useFrame, GroupProps } from '@react-three/fiber';
 import styles from './AnimatedBackground.module.css';
 import Delaunator from 'delaunator';
+import { debounce } from 'lodash';
 
 interface Props {
   darkMode: boolean;
@@ -10,14 +11,23 @@ interface Props {
 
 interface TrianglesProps extends GroupProps {
   darkMode: boolean;
+  points: number[][];
 }
 
-// Generate random points within a given width and height
-export const generatePoints = (numPoints: number, width: number, height: number) => {
+// Generate random points within a given width and height with padding
+export const generatePoints = (numPoints: number, width: number, height: number, padding: number = 100) => {
   const points = [];
+  const adjustedPadding = height < 720 ? padding * 10 : padding;
+  const paddedWidth = width + adjustedPadding * 2;
+  const paddedHeight = height + adjustedPadding * 2;
+
   for (let i = 0; i < numPoints; i++) {
-    points.push([Math.random() * width - width / 2, Math.random() * height - height / 2]);
+    points.push([
+      Math.random() * paddedWidth - paddedWidth / 2,
+      Math.random() * paddedHeight - paddedHeight / 2
+    ]);
   }
+
   return points;
 };
 
@@ -33,26 +43,26 @@ export const getRandomColor = (darkMode: boolean) => {
   return `#${hex}${hex}${hex}`;
 };
 
-const Triangles = (props: TrianglesProps) => {
+const Triangles = memo((props: TrianglesProps) => {
   const ref = useRef<THREE.Group>(null);
 
   // Generate delaunay triangulation
   // https://ianthehenry.com/posts/delaunay/
   // https://github.com/mapbox/delaunator
-  const points = useMemo(() => generatePoints(200, window.innerWidth, window.innerHeight), []);
-  const delaunay = useMemo(() => Delaunator.from(points), [points]);
+
+  const delaunay = useMemo(() => Delaunator.from(props.points), [props.points]);
 
   // Extract triangles
   const triangles = useMemo(() => {
     const triangles = [];
     for (let i = 0; i < delaunay.triangles.length; i += 3) {
-      const p0 = points[delaunay.triangles[i]];
-      const p1 = points[delaunay.triangles[i + 1]];
-      const p2 = points[delaunay.triangles[i + 2]];
+      const p0 = props.points[delaunay.triangles[i]];
+      const p1 = props.points[delaunay.triangles[i + 1]];
+      const p2 = props.points[delaunay.triangles[i + 2]];
       triangles.push([p0, p1, p2]);
     }
     return triangles;
-  }, [delaunay, points]);
+  }, [delaunay, props.points]);
 
   const colors = useMemo(() => triangles.map(() => getRandomColor(props.darkMode)), [triangles, props.darkMode]);
 
@@ -120,13 +130,25 @@ const Triangles = (props: TrianglesProps) => {
   });
 
   return <group ref={ref} {...props} />;
-};
+});
 
 const AnimatedBackground = ({ darkMode }: Props) => {
+  const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    }, 500);
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const points = useMemo(() => generatePoints(200, windowSize.width, windowSize.height), [windowSize]);
   return (
     <div className={styles.container}>
       <Canvas camera={{ position: [0, 0, 500], fov: 75 }}>
-        <Triangles darkMode={darkMode} />
+        <Triangles darkMode={darkMode} points={points} />
       </Canvas>
     </div>
   );
