@@ -19,6 +19,9 @@ const HireButton: React.FC = () => {
                 <a href="mailto:vladcrehul12@gmail.com" target="_blank" rel="noopener noreferrer">
                     <img src="/email.svg" alt="Email" className={styles.icon} />
                 </a>
+                <a href = "/cv_crehulvlad.pdf" download>
+                    <img src="/resume.svg" alt="Resume" className={styles.icon}/>
+                </a>
             </div>
         </div>
     );
