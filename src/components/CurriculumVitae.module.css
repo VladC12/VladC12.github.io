@@ -135,6 +135,7 @@
     }
 }
 
+/* mobile */
 @media (max-width: 975px) {
     .container {
         flex-direction: column;
@@ -143,8 +144,16 @@
     .cv {
         flex: 1;
         padding: 1rem;
+        text-align: center;
     }
 
+    .cv h2 {
+        font-size: 2.5em;
+    }
+
+    .cv ul {
+        padding: 1rem;
+    }
     .cv .myself {
         flex-direction: column;
     }
