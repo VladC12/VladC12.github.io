@@ -87,6 +87,7 @@
 @media (max-width: 975px) {
     .container {
         gap: 10px;
+        justify-content: center;
     }
     .container div {
         height: 50px;
