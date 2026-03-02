@@ -15,23 +15,69 @@
 
 .cv ul {
     list-style-type: none;
+    margin-top: 0;
 }
 
 .cv ul li {
+    margin-top: 0;
     margin-bottom: 1em;
     line-height: 1.6;
 }
 
-.cv h2 {
-    margin: 1.5em 0 0.8em 0;
+.cv > h2 {
+    margin-top: 2.5em;
+    margin-bottom: 1.5em;
+    padding-bottom: 0.8em;
+    border-bottom: 2.5px solid var(--highlight-color);
+    font-size: 2em;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    opacity: 0.95;
+    position: relative;
+}
+
+.cv > h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0.5px;
+    left: 0;
+    right: -4px;
+    height: 2.5px;
+    background-color: rgba(100, 35, 180, 0.4);
+}
+
+.cv li > h2 {
+    margin-top: 1.8em;
+    margin-bottom: 1.2em;
+    padding-bottom: 0.6em;
+    border-bottom: 1.5px solid var(--highlight-color);
+    font-size: 1.6em;
+    opacity: 0.85;
+    position: relative;
+}
+
+.cv li > h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0.3px;
+    left: 0;
+    right: -3px;
+    height: 1.5px;
+    background-color: rgba(100, 35, 180, 0.35);
+}
+
+.cv h3 {
     padding: 0;
     font-size: 1.5em;
 }
 
-.cv h3 {
-    margin: 0.8em 0 0.4em 0;
-    padding: 0;
-    font-size: 1.1em;
+.cv ul > li > h3:first-of-type {
+    margin-bottom: 0.15em;
+}
+
+.cv ul > li > h3:nth-of-type(2) {
+    margin-top: 0.15em;
+    margin-bottom: 1em;
 }
 
 .cv p {
@@ -87,6 +133,16 @@
     margin-right: 1rem;
     margin-bottom: 1.5rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.projects li > h3 {
+    margin-top: 0;
+    margin-bottom: 0.6em;
+    font-weight: 700;
+    font-size: 1.2em;
+    color: var(--highlight-color);
+    border-left: 4px solid var(--highlight-color);
+    padding-left: 0.6em;
 }
 
 .projects li p {

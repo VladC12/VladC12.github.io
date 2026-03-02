@@ -47,7 +47,7 @@ const CurriculumVitae: React.FC = () => {
                 <h2>Experience</h2>
                 <ul>
                     <li>
-                        <h3>09/2021 - Present</h3>
+                        <h3>09/2021 - {formattedDate}</h3>
                         <h3><b>SOFTWARE ENGINEER</b>, <b>SC Artificial Intelligence Visual Analytics</b></h3>
                         <ul className="bullets" style={{ listStyleType: 'disc', paddingLeft: '1.2em' }}>
                             <li><b>Architected</b> the development of high-impact full-stack applications (<b>React</b>, <b>Next.js</b>, <b>Node.js</b>, <b>Python</b>) spanning <b>real-time AI</b> monitoring dashboards and internal data-annotation tools.</li>
