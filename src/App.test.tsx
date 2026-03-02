@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import App from './App';
 
@@ -16,10 +16,14 @@ vi.mock('./components/AnimatedBackground', () => ({
 }));
 
 describe('App Component', () => {
-  it('renders correctly', () => {
+  it('renders correctly', async () => {
     render(<App />);
     expect(screen.getByText('Mocked Navbar')).toBeInTheDocument();
     expect(screen.getByText('Mocked CurriculumVitae')).toBeInTheDocument();
-    expect(screen.getByText('Mocked AnimatedBackground')).toBeInTheDocument();
+    
+    // Wait for the lazy-loaded AnimatedBackground to appear (100ms delay + lazy loading)
+    await waitFor(() => {
+      expect(screen.getByText('Mocked AnimatedBackground')).toBeInTheDocument();
+    }, { timeout: 500 });
   });
 });
