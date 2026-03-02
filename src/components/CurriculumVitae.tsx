@@ -40,8 +40,8 @@ const CurriculumVitae: React.FC = () => {
             <div className={styles.cv}>
                 <div className={styles.myself}>
                     <span>Crehul Vlad</span>
-                    <p>I am a <b>software engineer</b> with a passion for all things technology: software, hardware, electronics, and
-                        artificial intelligence. My main professional focus is <b>web development</b>. Especially in <b>React</b> and <b>NextJS</b>.</p>
+                    <p><b>Full-Stack Software Engineer</b>: 4+ years building production systems involving real-time video processing, AI integration, and cloud/edge deployments. Experienced in owning features end-to-end from frontend architecture to backend services and deployment.
+</p>
                 </div>
                 <h2>Skills</h2>
                 <Skills />
