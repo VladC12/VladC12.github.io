@@ -1,6 +1,6 @@
-import * as THREE from 'three';
 import { useRef, useMemo, useEffect, useState, memo } from 'react';
 import { Canvas, useFrame, GroupProps } from '@react-three/fiber';
+import * as THREE from 'three';
 import styles from './AnimatedBackground.module.css';
 import Delaunator from 'delaunator';
 import { debounce } from 'lodash';
@@ -100,10 +100,13 @@ const Triangles = memo((props: TrianglesProps) => {
     // Scene updates when theme changes
   }, [triangles, props.darkMode]);
 
-  // Animate trinagles
+  // Animate triangles - optimized for performance
   useFrame(({ clock }) => {
     if (ref.current) {
       const time = clock.getElapsedTime();
+      // Update every other frame for better performance
+      if (Math.floor(time * 60) % 2 !== 0) return;
+      
       ref.current.children.forEach((mesh, index) => {
         const geometry = (mesh as THREE.Mesh).geometry;
         const position = geometry.attributes.position;
@@ -115,14 +118,13 @@ const Triangles = memo((props: TrianglesProps) => {
           const z = Math.sin(y * 0.1 + time) * 10;
           position.setZ(i, z);
 
-          const currentColor = colors[index];
-
-          // Darken color based on z position
-          const intensity = Math.min(1, z / (props.darkMode ? 3 : 10));
-          const newColor = new THREE.Color(currentColor).multiplyScalar(1 + intensity * (props.darkMode ? 0.2 : 0.5));
-
-          material.color.set(newColor);
-
+          // Update color less frequently for performance
+          if (i === 0) {
+            const currentColor = colors[index];
+            const intensity = Math.min(1, z / (props.darkMode ? 3 : 10));
+            const newColor = new THREE.Color(currentColor).multiplyScalar(1 + intensity * (props.darkMode ? 0.2 : 0.5));
+            material.color.set(newColor);
+          }
         }
         position.needsUpdate = true;
       });
@@ -144,10 +146,19 @@ const AnimatedBackground = ({ darkMode }: Props) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const points = useMemo(() => generatePoints(200, windowSize.width, windowSize.height), [windowSize]);
+  const points = useMemo(() => {
+    // Reduce points count based on screen size for better performance
+    const numPoints = windowSize.width < 768 ? 50 : windowSize.width < 1200 ? 100 : 150;
+    return generatePoints(numPoints, windowSize.width, windowSize.height);
+  }, [windowSize]);
+  
   return (
     <div className={styles.container}>
-      <Canvas camera={{ position: [0, 0, 500], fov: 75 }}>
+      <Canvas 
+        camera={{ position: [0, 0, 500], fov: 75 }}
+        dpr={[1, 1.5]} // Limit pixel ratio for better performance
+        performance={{ min: 0.5 }} // Allow frame dropping if needed
+      >
         <Triangles darkMode={darkMode} points={points} />
       </Canvas>
     </div>

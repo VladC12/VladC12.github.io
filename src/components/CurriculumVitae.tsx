@@ -1,9 +1,11 @@
 import { ThemeContext } from "../context/ThemeContext";
 import styles from "./CurriculumVitae.module.css";
-import Showcase from "./Showcase";
 import Skills from "./Skills";
 
-import { useState, useContext } from "react";
+import { useState, useContext, lazy, Suspense } from "react";
+
+// Lazy load Showcase component (not critical for initial render)
+const Showcase = lazy(() => import("./Showcase"));
 
 const CurriculumVitae: React.FC = () => {
 
@@ -40,8 +42,7 @@ const CurriculumVitae: React.FC = () => {
             <div className={styles.cv}>
                 <div className={styles.myself}>
                     <span>Crehul Vlad</span>
-                    <p>I am a <b>software engineer</b> with a passion for all things technology: software, hardware, electronics, and
-                        artificial intelligence. My main professional focus is <b>web development</b>. Especially in <b>React</b> and <b>NextJS</b>.</p>
+                    <p><b>Full-Stack Software Engineer</b>: 4+ years building production systems involving real-time video processing, AI integration, and cloud/edge deployments. Experienced in owning features end-to-end from frontend architecture to backend services and deployment.</p>
                 </div>
                 <h2>Skills</h2>
                 <Skills />
@@ -49,107 +50,109 @@ const CurriculumVitae: React.FC = () => {
                 <ul>
                     <li>
                         <h3>09/2021 - {formattedDate}</h3>
-                        <h3>SOFTWARE ENGINEER, SC Artificial Intelligence Visual Analytics SRL</h3>
-                        <p>
-                            Built and deployed multiple projects as a <b>full-stack developer</b>, 
-                            including tools for internal use and client-facing products. Most of the work was focused on 
-                            web development using <b>React</b>, <b>NodeJS</b>, and <b>NextJS</b>. Additionally, 
-                            I worked on Synthetic Data Generation pipelines using <b>Python</b> and <b>Blender</b>, 
-                            and contributed to creating realistic datasets through 3D modeling. 
-                            Our solutions were deployed on <b>edge devices</b> and cloud infrastructure.
-                        </p>
+                        <h3><b>SOFTWARE ENGINEER</b>, <b>SC Artificial Intelligence Visual Analytics</b></h3>
+                        <ul className="bullets" style={{ listStyleType: 'disc', paddingLeft: '1.2em' }}>
+                            <li><b>Architected</b> the development of high-impact full-stack applications (<b>React</b>, <b>Next.js</b>, <b>Node.js</b>, <b>Python</b>) spanning <b>real-time AI</b> monitoring dashboards and internal data-annotation tools.</li>
+                            <li><b>Engineered</b> a pilot <b>AI-assisted mathematics platform</b>, featuring a <b>"Human-in-the-Loop" validation workflow</b> that allowed educators to audit and ingest AI-generated question sets into production.</li>
+                            <li><b>Built real-time video inference pipelines</b> (<b>Python</b>, <b>OpenCV</b>, <b>Kafka</b>) processing <b>multiple concurrent RTSP streams</b> for edge-device deployments in retail and traffic sectors.</li>
+                            <li><b>Developed automated synthetic data pipelines</b> using <b>Python</b> and <b>Blender</b>, generating <b>high-fidelity 3D datasets</b> to accelerate the training of proprietary machine learning models.</li>
+                            <li><b>Managed end-to-end deployment workflows</b> across <b>cloud infrastructure</b> and <b>edge devices</b>, configuring networking and remote monitoring solutions for client installations.</li>
+                        </ul>
 
                         <h2>Projects</h2>
                         <ul className={styles.projects}>
+                            <li id="learning-platform" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
+                                <h3>Learning Platform</h3>
+                                <p>
+                                    <b>Architected</b> a "<b>Human-in-the-Loop</b>" <b>AI education system</b> featuring a <b>LeetCode-style</b> interactive interface for dynamic mathematics problem-solving.<br/>
+                                    <b>Engineered dual-facing dashboards</b> for <b>real-time student performance</b> tracking and administrative tools for teachers to manage <b>class-level curriculum analytics</b>.<br/>
+                                    <b>Streamlined AI content ingestion</b> by building an internal validation workflow, allowing educators to audit and approve pre-generated question sets for production.
+                                </p>
+                                <div>
+                                    <span>React</span><span>TypeScript</span><span>MongoDB</span>
+                                </div>
+                            </li>
                             <li id="cradle" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
                                 <h3>Cradle</h3>
                                 <p>
-                                    This <b>Python</b>-based application processes <b>RTSP streams</b> from multiple sources, 
-                                    performing real-time video inference using a machine learning model. 
-                                    The results, such as people detection data and other analytical insights, 
-                                    are packaged into payloads for use in scenarios like <b>surveillance systems</b>, 
-                                    <b>traffic monitoring</b>, and other environments requiring real-time video analysis.
+                                    <b>Architected</b> a <b>real-time video inference pipeline</b> processing <b>multiple concurrent RTSP streams</b> for surveillance and people traffic monitoring.<br/>
+                                    <b>Optimized multiprocessing workloads</b> to achieve <b>low-latency ML inference</b> in edge-computing environments.<br/>
+                                    <b>Engineered high-throughput data payloads</b> to bridge the gap between backend AI detection and frontend monitoring dashboards.
                                 </p>
-
                                 <div>
-                                    <span>Python</span><span>OpenCV</span><span>Multiprocessing</span><span>Tensorflow</span><span>Kafka</span>
-                                </div>
-                            </li>
-                            <li id="quartermaster" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
-                                <h3>Quartermaster</h3>
-                                <p>
-                                    An internal tool developed for AiVA using <b>NextJS</b>, designed to help organize large datasets 
-                                    by enabling mass uploads into a structured directory. It supported special use cases like managing 3D model 
-                                    files with texture dependencies and allowed videos, images, and 3D models to be previewed directly in the browser. 
-                                    Files were stored in a shared folder with the file structure displayed in the browser using links generated from <b>JSON</b> files. 
-                                    Users could download entire folders or specific files as archives, preserving the file structure, 
-                                    with options for immediate download or time-limited links.
-                                </p>
-
-                                <div>
-                                    <span>NextJS</span><span>React</span><span>Typescript</span><span>threejs</span>
+                                    <span>Python</span><span>OpenCV</span><span>Kafka</span><span>Tensorflow</span><span>Multiprocessing</span>
                                 </div>
                             </li>
                             <li id="caster" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
                                 <h3>Caster</h3>
                                 <p>
-                                    An internal tool developed at AiVA using <b>NextJS</b> and <b>Flask</b>. Its main purpose was to simplify the process of visually 
-                                    saving image coordinates. Users could save <b>RTSP video streams</b> with thumbnails generated from screenshots. 
-                                    For each stream, they could create directional lines and polygons for regions of interest (ROI) using Canvas. 
-                                    These annotations were then used by AI to detect when people passed specific lines or entered an ROI. 
-                                    <b>Flask</b> handled RTSP streams and OpenCV-related APIs. Additional options, though less central, were also included to enhance functionality.
+                                    <b>Developed</b> an internal <b>spatial data annotation tool</b> to define coordinates, directional lines, and <b>Polygons (ROI)</b> via <b>HTML5 Canvas</b>.<br/>
+                                    <b>Integrated Flask-based APIs</b> to handle <b>RTSP stream synchronization</b> and <b>automated thumbnail generation</b> from live video.<br/>
+                                    <b>Enabled precise AI triggering</b> for person-detection events based on user-defined geometric boundaries.
                                 </p>
                                 <div>
-                                    <span>NextJS</span><span>React</span><span>Typescript</span><span>Flask</span>
+                                    <span>NextJS</span><span>TypeScript</span><span>Flask</span>
                                 </div>
                             </li>
                             <li id="event-manager" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
                                 <h3>Event Manager</h3>
-                                <p>A client-facing project built with <b>NextJS</b>. It visualizes various checkout events, 
-                                    such as item-scanning fraud, by displaying a detailed, filterable table of data. 
-                                    The application allows user creation with different permission levels, ensuring 
-                                    flexible access control for administrators.</p>
+                                <p>
+                                    <b>Delivered</b> a client-facing <b>analytics dashboard</b> to visualize <b>item-scanning fraud</b> through complex filterable data tables.<br/>
+                                    <b>Implemented a robust Role-Based Access Control (RBAC)</b> system to manage administrative permissions and secure sensitive event data.
+                                </p>
                                 <div>
-                                    <span>NextJS</span><span>React</span><span>Typescript</span><span>MongoDB</span>
+                                    <span>NextJS</span><span>TypeScript</span><span>MongoDB</span>
                                 </div>
                             </li>
                             <li id="event-watcher" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
-                                <h3>Event Watcher</h3>
-                                <p>A desktop app created using <b>Electron</b> and <b>React</b>, designed to notify users in real time 
-                                    about checkout fraud. Users can review ~5-second videos of flagged events, along with information 
-                                    such as the SKU barcode, price, and timestamp. It's accompanied by Event Watcher Buddy, which helps 
-                                    manage user accounts, track app versions, and enable software updates. Buddy also supports user creation 
-                                    and handles API integration.</p>
+                                <h3>Event Watcher & Buddy</h3>
+                                <p>
+                                    <b>Built</b> a <b>cross-platform desktop application</b> for <b>real-time security alerts</b>, featuring <b>low-latency playback</b> of flagged fraud events.<br/>
+                                    <b>Designed "Event Watcher Buddy"</b> to manage <b>automated software updates</b>, version control, and <b>secure user authentication</b>.<br/>
+                                    <b>Implemented a local-first notification system</b> to alert users within seconds of an AI-flagged event.
+                                </p>
                                 <div>
-                                    <span>Electron</span><span>React</span><span>Typescript</span><span>MongoDB</span><span>NodeJS</span>
+                                    <span>Electron</span><span>React</span><span>NodeJS</span><span>MongoDB</span>
+                                </div>
+                            </li>
+                            <li id="quartermaster" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
+                                <h3>Quartermaster</h3>
+                                <p>
+                                    <b>Created</b> a <b>high-capacity data management system</b> for organizing <b>large-scale datasets and 3D assets</b> with complex dependencies.<br/>
+                                    <b>Implemented in-browser previews</b> for <b>3D models (Three.js)</b>, videos, and images, eliminating the need for local downloads during review.<br/>
+                                    <b>Developed a dynamic file-structure generator</b> that supports batch uploads and <b>time-limited secure sharing links</b>.
+                                </p>
+                                <div>
+                                    <span>NextJS</span><span>TypeScript</span><span>threeJS</span>
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <h3>07/2018 - 09/2018</h3>
-                        <h3>INTERN SOFTWARE DEVELOPER, SC Continental Automotive Systems SRL</h3>
-                        <p>
-                            Tested and worked with <b>electronic components</b>, contributing to an ATV prototype. 
-                            Developed software for the prototype while working in a team environment.
-                        </p>
+                        <h3><b>INTERN SOFTWARE DEVELOPER</b>, <b>SC Continental Automotive Systems</b></h3>
+                         <ul className="bullets" style={{ listStyleType: 'disc', paddingLeft: '1.2em' }}>
+                            <li><b>Developed embedded software</b> for an ATV prototype, focusing on <b>real-time data acquisition</b> from electronic sensors.</li>
+                            <li><b>Executed hardware-in-the-loop (HIL) testing</b> for electronic components to ensure system reliability under stress conditions.</li>
+                        </ul>
                         <h2>Projects</h2>
                         <ul className={styles.projects}>
-                            <li id="continental" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
+                             <li id="continental" onMouseEnter={handleHover} onMouseLeave={() => setShowcase("left")}>
                                 <h3>Internship Project</h3>
-                                <p>Developed software for a prototype electric ATV utilizing custom CAN drivers and Arduino. 
-                                   Implemented communication protocols between the microcontroller and four motor drivers, 
-                                   contributing to vehicle control system development.</p>
+                                <p><b>Developed software</b> for a prototype electric ATV utilizing <b>custom CAN drivers</b> and <b>Arduino</b>.<br/>
+                                   <b>Implemented communication protocols</b> between the microcontroller and four motor drivers, contributing to vehicle control system development.</p>
                                 <a href="https://github.com/VladC12/CONTIMOBIL-2018" target="_blank" rel="noopener noreferrer">https://github.com/VladC12/CONTIMOBIL-2018</a>
                                 <div>
                                     <span>Arduino</span><span>C</span>
                                 </div>
                             </li>
                             <li id="innovation-labs" onMouseEnter={handleHover} >
-                                <h3>Innovation Labs 2018</h3>
-                                <p>Developed an electric self-stabilizing cup-holder prototype with Arduino. 
-                                   Implemented gyroscopic stabilization and motor control systems. Project advanced 
-                                   to semi-finals at Innovation Labs Bucharest competition.</p>
+                                <h3>Innovation Labs 2018 — <b>Semi-Finals</b></h3>
+                                <p>
+                                    <b>Co-engineered</b> an <b>electric self-stabilizing mechatronic prototype</b> within a multidisciplinary team of four, focusing on <b>hardware-software integration</b> using Arduino.<br/>
+                                    <b>Developed the gyroscopic stabilization logic</b> and <b>closed-loop motor control systems</b> to maintain container equilibrium against multi-axis vehicle motion.<br/>
+                                    <b>Contributed to the successful delivery</b> of a functional prototype, advancing the project to the competition semi-finals through rigorous technical iteration and testing.
+                                </p>
                                 <a href="https://github.com/VladC12/Omni-Holder" target="_blank" rel="noopener noreferrer">https://github.com/VladC12/Omni-Holder</a>
                                 <div>
                                     <span>Arduino</span><span>C</span><span>Electronics</span>
@@ -167,32 +170,14 @@ const CurriculumVitae: React.FC = () => {
                         <h2>Projects</h2>
                         <ul className={styles.projects}>
                             <li id="thesis" onMouseEnter={handleHover}>
-                                <h3>Bachelor Thesis: Tacotron 2 DNN Text-To-Speech Web App</h3>
-                                <p>Implemented a <b>Text-to-Speech</b> system using <b>Tacotron 2</b> architecture, training models in both Romanian and English. 
-                                   Developed a <b>web interface</b> using <b>Flask</b> to demonstrate the model capabilities. The Romanian model was trained on the Mara Corpus, 
-                                   while the English model utilized the <b>LJSpeech Dataset</b>.</p>
+                                <h3>Bachelor Thesis: <b>Tacotron 2 DNN Text-To-Speech Web App</b></h3>
+                                <p>
+                                    <b>Engineered</b> a <b>high-fidelity TTS system</b> based on the <b>Tacotron 2</b> deep neural network architecture, implementing <b>custom training pipelines</b> for both English and Romanian phonetics.<br/>
+                                    <b>Optimized model performance</b> through <b>specialized datasets</b>, utilizing the <b>LJSpeech Dataset</b> for English and the <b>Mara Corpus</b> for Romanian to achieve natural-sounding speech synthesis.<br/>
+                                    <b>Developed a Flask-based web interface</b> to serve <b>real-time inference</b>, providing a seamless demonstration of the model's linguistic capabilities and neural processing.
+                                </p>
                                 <div>
-                                    <span>Python</span><span>Tensorflow</span><span>Flask</span><span>Bootstrap</span>
-                                </div>
-                            </li>
-                            <li id="modbus" onMouseEnter={handleHover}>
-                                <h3>IOT Modbus Monitor</h3>
-                                <p>Developed a web application using <b>Python</b> and <b>Flask</b> to monitor and display data from 
-                                   <b>Modbus</b> devices. Implemented data storage and retrieval using <b>MongoDB</b>. 
-                                   Worked in a team of three to complete this university project.</p>
-                                <a href="https://github.com/VladC12/IOT_Modbus_Monitor" target="_blank" rel="noopener noreferrer">https://github.com/VladC12/IOT_Modbus_Monitor</a>
-                                <div>
-                                    <span>Python</span><span>Flask</span><span>Bootstrap</span><span>MongoDB</span>
-                                </div>
-                            </li>
-                            <li id="edge-detection" onMouseEnter={handleHover}>
-                                <h3>Edge Detection with GUI</h3>
-                                <p>Developed an edge detection application using <b>Python</b> and <b>OpenCV</b>. 
-                                   Implemented various edge detection algorithms including Prewitt, Sobel, 
-                                   and Nevatia-Babu operators. Created a simple graphical interface with <b>Tkinter</b>.</p>
-                                <a href="https://github.com/VladC12/Edge-Detection-PNI" target="_blank" rel="noopener noreferrer">https://github.com/VladC12/Edge-Detection-PNI</a>
-                                <div>
-                                    <span>Python</span><span>OpenCV</span><span>Tkinter</span>
+                                    <span>Flask</span><span>Tensorflow</span>
                                 </div>
                             </li>
                         </ul>
@@ -206,7 +191,9 @@ const CurriculumVitae: React.FC = () => {
             </div>
             {!isMobile && 
             <div id="showcase" onMouseEnter={handleHover} onMouseLeave={handleLeave} className={styles.showcase}>
-                <Showcase showcase={showcase} />
+                <Suspense fallback={<div style={{ width: '100%', height: '100%' }} />}>
+                    <Showcase showcase={showcase} />
+                </Suspense>
             </div>}
 
         </div>
