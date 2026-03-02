@@ -1,9 +1,11 @@
 import { ThemeContext } from "../context/ThemeContext";
 import styles from "./CurriculumVitae.module.css";
-import Showcase from "./Showcase";
 import Skills from "./Skills";
 
-import { useState, useContext } from "react";
+import { useState, useContext, lazy, Suspense } from "react";
+
+// Lazy load Showcase component (not critical for initial render)
+const Showcase = lazy(() => import("./Showcase"));
 
 const CurriculumVitae: React.FC = () => {
 
@@ -189,7 +191,9 @@ const CurriculumVitae: React.FC = () => {
             </div>
             {!isMobile && 
             <div id="showcase" onMouseEnter={handleHover} onMouseLeave={handleLeave} className={styles.showcase}>
-                <Showcase showcase={showcase} />
+                <Suspense fallback={<div style={{ width: '100%', height: '100%' }} />}>
+                    <Showcase showcase={showcase} />
+                </Suspense>
             </div>}
 
         </div>

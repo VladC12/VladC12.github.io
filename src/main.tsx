@@ -11,3 +11,16 @@ createRoot(document.getElementById('root')!).render(
     </ThemeProvider>
   </StrictMode>,
 )
+
+// Register service worker for PWA caching
+import { registerSW } from 'virtual:pwa-register'
+
+registerSW({
+  onNeedRefresh() {
+    // Optionally show a prompt to the user for updates
+    console.log('New content available, please refresh.')
+  },
+  onOfflineReady() {
+    console.log('App ready to work offline.')
+  },
+})
